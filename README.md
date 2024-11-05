@@ -1,1 +1,1 @@
-# Trabalho-Pr-tico-01-AEDS-1
+# Trabalho-Pratico-01-AEDS-1
