@@ -1,7 +1,7 @@
 #ifndef ROCHA_MINERAL_H
 #define ROCHA_MINERAL_H
 
-//#include "./ListaMinerais.h"
+#include "./ListaMinerais.h"
 
 typedef enum CategoriaRochaMineral {
     FERROM = 1,
@@ -19,7 +19,7 @@ typedef enum CategoriaRochaMineral {
 typedef struct RochaMineral{
     char id[20];
     float peso;
-    //ListaMinerais *lista;
+    ListaMinerais *lista;
     CategoriaRochaMineral categoria;
     char latitude[50];
     char longitude[50];
@@ -32,14 +32,14 @@ void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso,
 char *getId(RochaMineral* rocha);
 float getPeso(RochaMineral* rocha);
 CategoriaRochaMineral getCategoria(RochaMineral* rocha);
-//ListaMinerais getListaMinerais(RochaMineral* rocha, ListaMinerais Lista);
+ListaMinerais getListaMinerais(RochaMineral* rocha, ListaMinerais Lista);
 char *getLatitude(RochaMineral* rocha);
 char *getLongitude(RochaMineral* rocha);
 char *getDataColeta(RochaMineral* rocha);
 
 void setId(RochaMineral* rocha, char *id);
 void setPeso(RochaMineral* rocha, float peso);
-//void setListaMinerais setListaMinerais(RochaMineral* rocha, ListaMineraisLista);
+void setListaMinerais setListaMinerais(RochaMineral* rocha, ListaMineraisLista);
 void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria);
 void setLatitude(RochaMineral* rocha, char *latitude);
 void setLongitude(RochaMineral* rocha, char *longitude);

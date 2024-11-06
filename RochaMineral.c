@@ -1,5 +1,5 @@
 #include "RochaMineral.h"
-
+#include "ListaMinerais.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -25,10 +25,10 @@ float getPeso(RochaMineral* rocha){
 CategoriaRochaMineral getCategoria(RochaMineral* rocha){
     return rocha->categoria;
 }
-/*ListaMinerais getListaMinerais(RochaMineral* rocha, ListaMinerais Lista){
+ListaMinerais getListaMinerais(RochaMineral* rocha, ListaMinerais Lista){
+    return rocha->lista;
 
-
-}*/
+}
 char *getLatitude(RochaMineral* rocha){
     return rocha->latitude;
 }
@@ -47,9 +47,9 @@ void setId(RochaMineral* rocha, char *id){
 void setPeso(RochaMineral* rocha, float peso){
     rocha->peso = peso;
 }
-/*void setListaMinerais setListaMinerais(RochaMineral* rocha, ListaMineraisLista){
-
-}*/
+void setListaMinerais setListaMinerais(RochaMineral* rocha, ListaMineraisLista){
+    rocha->lista = lista;
+}
 void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria){
     rocha->categoria = categoria;
 }
@@ -62,5 +62,3 @@ void setLongitude(RochaMineral* rocha, char *longitude){
 void setData(RochaMineral* rocha, char *data){
     strcpy(rocha->dataColeta, data);
 }
-
-
