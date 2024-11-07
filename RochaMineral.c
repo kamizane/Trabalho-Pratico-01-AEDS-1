@@ -5,13 +5,13 @@
 #include <string.h>
 
 void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, 
-    CategoriaRochaMineral categoria, char latitude[50], char longitude[50], char dataColeta[10]){
+    CategoriaRochaMineral categoria, LocalRochaMineral local, char dataColeta[10]){
         
     setId(rocha, id);
     setPeso(rocha, peso);
     setCategoria(rocha, categoria);
-    setLatitude(rocha, latitude);
-    setLongitude(rocha, longitude);
+    setLatitude(rocha, local.latitude);
+    setLongitude(rocha, local.longitude);
     setData(rocha, dataColeta);
 
 }
@@ -25,15 +25,15 @@ float getPeso(RochaMineral* rocha){
 CategoriaRochaMineral getCategoria(RochaMineral* rocha){
     return rocha->categoria;
 }
-ListaMinerais getListaMinerais(RochaMineral* rocha, ListaMinerais Lista){
+ListaMinerais *getListaMinerais(RochaMineral* rocha, ListaMinerais* lista){
     return rocha->lista;
 
 }
 char *getLatitude(RochaMineral* rocha){
-    return rocha->latitude;
+    return rocha->local.latitude;
 }
 char *getLongitude(RochaMineral* rocha){
-    return rocha->longitude;
+    return rocha->local.longitude;
 }
 char *getDataColeta(RochaMineral* rocha){
     return rocha->dataColeta;
@@ -42,23 +42,22 @@ char *getDataColeta(RochaMineral* rocha){
 
 void setId(RochaMineral* rocha, char *id){
     strcpy(rocha->id, id);
-
 }
 void setPeso(RochaMineral* rocha, float peso){
     rocha->peso = peso;
 }
-void setListaMinerais setListaMinerais(RochaMineral* rocha, ListaMineraisLista){
+void setListaMinerais(RochaMineral* rocha, ListaMinerais* lista){
     rocha->lista = lista;
 }
 void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria){
     rocha->categoria = categoria;
 }
 void setLatitude(RochaMineral* rocha, char *latitude){
-    strcpy(rocha->latitude, latitude);
+    strcpy(rocha->local.latitude, latitude);
 }
 void setLongitude(RochaMineral* rocha, char *longitude){
-    strcpy(rocha->longitude, longitude);
+    strcpy(rocha->local.longitude, longitude);
 }
-void setData(RochaMineral* rocha, char *data){
+void setDataColeta(RochaMineral* rocha, char *data){
     strcpy(rocha->dataColeta, data);
 }

@@ -6,33 +6,34 @@
 #define MaxTam = 3
 
 //verificar se lista é vazia
-int LEhVazia(ListaMinerais* pLista){
+int lEhVazia(ListaMinerais* pLista){
     return (pLista->Ultimo == pLista->Primeiro);
 }
 
-int LInsere(ListaMinerais* pLista, Mineral x){
+int lInsere(ListaMinerais* pLista, TItem x){
     if (pLista->Ultimo == MaxTam){
         return 0;
     }
-    pLista->Item[pLista->Ultimo++] = x;
+    pLista->Item[pLista->Ultimo] = x;
+    pLista->Ultimo++;
     return 1;
 }
 
-void FLVazia(ListaMinerais* pLista){
+void fLVazia(ListaMinerais* pLista){
     pLista->Primeiro = InicioArranjo;
     pLista->Ultimo = pLista->Primeiro;
 }
 
-void LRetira(ListaMinerais* pLista, Mineral *pX, char *nome){
+void lRetira(ListaMinerais* pLista, TItem *pX, char *nome){
     
-    if (LEhVazia(pLista)){
+    if (lEhVazia(pLista)){
         return 0;
     }else{
         //*pX = pLista->Item[p];
         //pLista->Ultimo--;  
 
         for (int i = pLista->Primeiro; i <= pLista->Ultimo; i++){
-            if(strcmp(pLista->Item[i].nome) == 1){
+            if(strcmp(pLista->Item[i].nome) == 0){
                 *px = pLista->Item[i];
 
                 for(int j = i+1; j < pLista->Ultimo; j++){
@@ -47,7 +48,7 @@ void LRetira(ListaMinerais* pLista, Mineral *pX, char *nome){
     return 0;
 } 
 
-void LImprime(ListaMinerais* pLista){
+void lImprime(ListaMinerais* pLista){
     for (int i = pLista->Primeiro; i < pLista->Ultimo; i++){
         printf("Nome: %s, Cor: %s, Dureza: %f, Reatividade: %f\n", 
         pLista->Item[i].nome, pLista->Item[i].cor, pLista->Item[i].dureza,

@@ -11,17 +11,17 @@ typedef int Apontador;
 typedef struct {
   TChave Chave;
 
-} Mineral;
+} TItem;
 
 typedef struct {
-  Mineral Item[MaxTam];
+  TItem Item[MaxTam];
   Apontador Primeiro, Ultimo;
 }ListaMinerais;
 
-int LEhVazia(ListaMinerais* pLista);
-int LInsere(ListaMinerais* pLista, Mineral x);
-void FLVazia(ListaMinerais* pLista);
-int LRetira(ListaMinerais* pLista, Mineral *pX, char *nome);
-void LImprime(ListaMinerais* pLista);
+int lEhVazia(ListaMinerais* pLista);
+int lInsere(ListaMinerais* pLista, TItem x);
+void fLVazia(ListaMinerais* pLista);
+int lRetira(ListaMinerais* pLista, TItem *pX, char *nome);
+void lImprime(ListaMinerais* pLista);
 
 #endif
