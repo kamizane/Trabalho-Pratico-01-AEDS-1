@@ -1,16 +1,16 @@
 #include "./Mineral.h"
-#include "Listaminerais.h"
+#include "ListaMinerais.h"
 #include <stdio.h>
 #include <string.h>
 #define InicioArranjo 0
-#define MaxTam = 3
+#define MaxTam 3
 
 //verificar se lista é vazia
-int lEhVazia(Listaminerais* pLista){
+int lEhVazia(ListaMinerais* pLista){
     return (pLista->Ultimo == pLista->Primeiro);
 }
 
-int lInsere(Listaminerais* pLista, Mineral x){
+int lInsere(ListaMinerais* pLista, Mineral x){
     if (pLista->Ultimo == MaxTam){
         return 0;
     }
@@ -19,12 +19,12 @@ int lInsere(Listaminerais* pLista, Mineral x){
     return 1;
 }
 
-void fLVazia(Listaminerais* pLista){
+void fLVazia(ListaMinerais* pLista){
     pLista->Primeiro = InicioArranjo;
     pLista->Ultimo = pLista->Primeiro;
 }
 
-void lRetira(Listaminerais* pLista, Mineral *pX, char *nome){
+void lRetira(ListaMinerais* pLista, Mineral *pX, char *nome){
     
     if (lEhVazia(pLista)){
         return 0;
@@ -33,8 +33,8 @@ void lRetira(Listaminerais* pLista, Mineral *pX, char *nome){
         //pLista->Ultimo--;  
 
         for (int i = pLista->Primeiro; i <= pLista->Ultimo; i++){
-            if(strcmp(pLista->minerais[i].nome) == 0){
-                *px = pLista->minerais[i];
+            if(strcmp(pLista->minerais[i].nome, *nome) == 0){
+                *pX = pLista->minerais[i];
 
                 for(int j = i+1; j < pLista->Ultimo; j++){
                     pLista->minerais[j-1] = pLista->minerais[j];
@@ -48,11 +48,11 @@ void lRetira(Listaminerais* pLista, Mineral *pX, char *nome){
     return 0;
 } 
 
-void lImprime(Listaminerais* pLista){
+void lImprime(ListaMinerais* pLista){
     for (int i = pLista->Primeiro; i < pLista->Ultimo; i++){
         printf("Nome: %s, Cor: %s, Dureza: %f, Reatividade: %f\n", 
         pLista->minerais[i].nome, pLista->minerais[i].cor, pLista->minerais[i].dureza,
-        pLista->minerais.reatividade);
+        pLista->minerais[i].reatividade);
     }
 } 
 
