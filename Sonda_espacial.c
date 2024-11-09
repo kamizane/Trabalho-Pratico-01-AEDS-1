@@ -4,7 +4,7 @@
 
 void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, char *latitude,char * longitude){
     void Set_Identificador(sonda, id);
-    void Set_Compartimento(sonda,200.3);
+    void Set_Compartimento(sonda);
     void Set_Localizacao(sonda,latitude,longitude);
     void Set_EstaLigada(sonda, estado);
 
@@ -48,8 +48,8 @@ void set_Identificador(Sonda_espacial*sonda, char * id){
     strcpy(sonda->Identificador, id);
 }
 
-void set_Compartimento(Sonda_espacial*sonda,float compartimento){
-    sonda->Compartimento = compartimento;
+void set_Compartimento(Sonda_espacial*sonda){
+    faz_compartimento_vazio(&sonda->Compartimento);
 }
 void set_Localizacao(Sonda_espacial * sonda, char * latitude, char*longitude){
     strcpy(sonda->Localizacao.Latitude, latitude);
