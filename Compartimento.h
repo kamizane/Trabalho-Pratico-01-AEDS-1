@@ -19,11 +19,11 @@ typedef struct{
 } Compartimento;
 
 
-int faz_compartimento_vazio(Compartimento* compartimento);
+void faz_compartimento_vazio(Compartimento* compartimento);
 
 int tamanho_do_compartimento(Compartimento* compartimento);
 
-int compartimento_eh_vazio(Compartimento* compartimento);
+void compartimento_eh_vazio(Compartimento* compartimento);
 
 int imprime_compartimento(Compartimento* compartimento);
 

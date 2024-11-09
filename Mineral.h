@@ -12,9 +12,9 @@ typedef struct Mineral {
 } Mineral;
 
 
-int Inicializa(Mineral * mineral, char * nome, char * cor, float dureza, float reatividade);
+int inicializa_mineral(Mineral * mineral, char * nome, char * cor, float dureza, float reatividade);
 
-int Preenche(Mineral * mineral);
+int preenche_mineral(Mineral * mineral);
 
 char * get_nome(Mineral * mineral);
 char * get_cor(Mineral * mineral);

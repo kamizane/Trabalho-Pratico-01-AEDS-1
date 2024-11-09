@@ -2,7 +2,7 @@
 #include <string.h>
 #include "Mineral.h"
 
-int Preenche(Mineral * mineral){ //pede ao uzuário todas as informações para inicializar
+int preenche_mineral(Mineral * mineral){ //pede ao uzuário todas as informações para inicializar
     char nome[20];
     char cor[20];
     float dureza;
@@ -24,7 +24,7 @@ int Preenche(Mineral * mineral){ //pede ao uzuário todas as informações para 
     Inicializa(mineral, nome, cor, dureza, reatividade);
 }
 
-int Inicializa(Mineral * mineral, char nome[], char cor[], float dureza, float reatividade){ //joga tudo no tad
+int inicializa_mineral(Mineral * mineral, char nome[], char cor[], float dureza, float reatividade){ //joga tudo no tad
     set_nome(mineral, nome);
     set_cor(mineral, cor);
     set_dureza(mineral, dureza);

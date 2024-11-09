@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "Compatimento.h"
-#include "RochaMineral.h"
+#include "Compartimento.h"
 
-int faz_compartimento_vazio(Compartimento* compartimento){
+
+void faz_compartimento_vazio(Compartimento* compartimento){
 
     compartimento->primeiro = (Ccelula*) malloc(sizeof(Ccelula));
     compartimento->ultimo = compartimento->primeiro;
@@ -36,7 +36,7 @@ int imprime_compartimento(Compartimento* compartimento){
 
     }while(celula->prox != NULL);
 
-
+    return 1;
 }
 
 int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
@@ -50,13 +50,14 @@ int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
 
             if (celula->rocha.peso <= rocha->peso){
                 celula->rocha = *rocha;
-
+                return 1;
             }
         }
         
         celula = celula->prox;
 
     }while(celula->prox != NULL);
+    return 0;
 }
 
 int inserir_rocha(Compartimento* compartimento, RochaMineral* rocha){
