@@ -1,6 +1,7 @@
 #ifndef SONDA_ESPACIAL_H
 #define SONDA_ESPACIAL_H
 #include "Compartimento.h"
+
 typedef struct{
     char Latitude[20];
     char Longitude[20];
