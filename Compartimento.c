@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "Compartimento.h"
 
 
@@ -22,7 +24,7 @@ int compartimento_eh_vazio(Compartimento* compartimento){
 int imprime_compartimento(Compartimento* compartimento){    
     Ccelula* celula;
 
-    if (compartimento_eh_vazio(&compartimento)){
+    if (compartimento_eh_vazio(compartimento)){
         printf("compartimento eh vazio!\n");
         return 0;
     }
@@ -72,16 +74,55 @@ int inserir_rocha(Compartimento* compartimento, RochaMineral* rocha){
 
 }
 
-int remover_rocha(Compartimento* compartimento, char categoria[]){
+int remover_rocha(Compartimento* compartimento, char categoria[]){ //
     Ccelula* anterior;
     Ccelula* celula;
 
     celula = compartimento->primeiro->prox;
     anterior = compartimento->primeiro;
 
-    do{
 
-        if(celula->rocha.categoria == categoria){
+
+    do{
+        char categoria_da_rocha[30];
+        switch (celula->rocha.categoria)
+        {
+        case 1:
+            strcpy(categoria_da_rocha, "FERROM");
+            break;
+        case 2:
+            strcpy(categoria_da_rocha, "SOLARIS");
+            break;
+        case 3:
+            strcpy(categoria_da_rocha, "AQUAFERRO");
+            break;
+        case 4:
+            strcpy(categoria_da_rocha, "TERROLIS");
+            break;
+        case 5:
+            strcpy(categoria_da_rocha, "TERRASOL");
+            break;
+        case 6:
+            strcpy(categoria_da_rocha, "AQUATERRA");
+            break;
+        case 7:
+            strcpy(categoria_da_rocha, "CALQUER");
+            break;
+        case 8:
+            strcpy(categoria_da_rocha, "SOLARISFER");
+            break;
+        case 9:
+            strcpy(categoria_da_rocha, "TERRARIS");
+            break;
+        case 10:
+            strcpy(categoria_da_rocha, "AQUACALIS");
+            break;
+        
+        default:
+            break;
+        }
+
+        if(strcmp(categoria, categoria_da_rocha) == 0){
             anterior->prox = celula->prox;
             
             free(celula);

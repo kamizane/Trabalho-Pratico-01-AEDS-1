@@ -57,6 +57,17 @@ int retira_item_lista_sonda_espacial(Lista_sonda_espacial* lista_sonda, char * i
         return 0;
     }
 }
-void imprime_lista_sonda_espacial(Lista_sonda_espacial* lista_sonda){
-    
+int imprime_lista_sonda_espacial(Lista_sonda_espacial* lista_sonda){
+    if (verifica_lista_vazia(lista_sonda)){
+        printf("Lista vazia\n");
+        return 0;
+    }
+    else {
+        Celula* pAux = lista_sonda->pPrimeiro->pProx;
+        while(pAux->pProx!= NULL){
+            printf("%s, ", pAux->item_sonda.Identificador);
+            pAux = pAux->pProx;
+        }
+    }
+    return 1;
 }

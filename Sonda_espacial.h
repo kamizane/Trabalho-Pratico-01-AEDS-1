@@ -30,6 +30,7 @@ int desliga_Sonda_Espacial(Sonda_espacial * sonda);
 void move_Sonda_Espacial (Sonda_espacial * sonda);
 void set_Identificador(Sonda_espacial*sonda, char * id);
 void set_Compartimento(Sonda_espacial*sonda);
+
 void set_Localizacao_sonda(Sonda_espacial * sonda, char * latitude, char*longitude);
 void set_Capacidade(Sonda_espacial *sonda, float capacidade);
 void set_Velocidade(Sonda_espacial * sonda, float velocidade);

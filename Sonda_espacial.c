@@ -11,6 +11,7 @@ void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, char *latitude
     set_Combustivel(sonda, combustivel);
     set_EstaLigada(sonda, OFF);
 
+
 }
 void preenche_Sonda_Espacial(Sonda_espacial * sonda){
     char id[20],latitude[20],longitude[20];
@@ -24,7 +25,9 @@ void preenche_Sonda_Espacial(Sonda_espacial * sonda){
     printf("Digite a longitude da Sonda espacial: ");
     scanf("%[^\n]", longitude);
 
+
     inicializa_Sonda_Espacial(sonda, id, latitude, longitude,capacidade,velocidade,combustivel);
+
 
 }
 int liga_Sonda_Espacial(Sonda_espacial * sonda){
@@ -68,6 +71,6 @@ void set_Velocidade(Sonda_espacial * sonda, float velocidade){
 void set_Combustivel(Sonda_espacial * sonda, float combustivel){
     sonda->Combustivel_sonda = combustivel;
 }
-void set_EstaLigada(Sonda_espacial *sonda, EstaLigada estado){
-    sonda->EstaLigada = estado;
+void set_EstaLigada(Sonda_espacial *sonda){
+    desliga_Sonda_Espacial(sonda);
 }
