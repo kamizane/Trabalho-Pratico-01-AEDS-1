@@ -1,5 +1,6 @@
 #include "Lista_sonda_espacial.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void inicializa_lista_sonda_espacial(Lista_sonda_espacial * lista_sonda){
     lista_sonda->pPrimeiro = (Celula*) malloc (sizeof(Celula));
@@ -30,7 +31,7 @@ int retira_item_lista_sonda_espacial(Lista_sonda_espacial* lista_sonda, char * i
         int count = 1;
         //ércorre a lista até encontrar o ultimo item
         while (pAux->pProx != NULL){
-            if(pAux->item_sonda.Identificador == *id){
+            if(*pAux->item_sonda.Identificador == *id){//pode ter um erro aqui
                 if (count == lista_sonda->QntItens){
                     *pitem = pAux->item_sonda;
                     pAux_ant->pProx = NULL;

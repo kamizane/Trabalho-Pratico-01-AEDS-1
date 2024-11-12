@@ -2,15 +2,19 @@
 #include <stdio.h>
 #include <string.h>
 
-void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, char *latitude,char * longitude){
-    void Set_Identificador(sonda, id);
-    void Set_Compartimento(sonda);
-    void Set_Localizacao(sonda,latitude,longitude);
-    void Set_EstaLigada(sonda, estado);
+void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, char *latitude,char * longitude, float capacidade, float velocidade, float combustivel){
+    set_Identificador(sonda, id);
+    set_Compartimento(sonda);
+    set_Localizacao_sonda(sonda,latitude,longitude);
+    set_Capacidade(sonda,capacidade);
+    set_Velocidade(sonda, velocidade);
+    set_Combustivel(sonda, combustivel);
+    set_EstaLigada(sonda, OFF);
 
 }
 void preenche_Sonda_Espacial(Sonda_espacial * sonda){
     char id[20],latitude[20],longitude[20];
+    float capacidade,velocidade,combustivel;
     printf("Digite o identificador da Sonda espacial: ");
     scanf("%[^\n]", id);
 
@@ -20,7 +24,7 @@ void preenche_Sonda_Espacial(Sonda_espacial * sonda){
     printf("Digite a longitude da Sonda espacial: ");
     scanf("%[^\n]", longitude);
 
-    Inicializa_Sonda_Espacial(sonda, id, latitude, longitude);
+    inicializa_Sonda_Espacial(sonda, id, latitude, longitude,capacidade,velocidade,combustivel);
 
 }
 int liga_Sonda_Espacial(Sonda_espacial * sonda){
@@ -49,11 +53,20 @@ void set_Identificador(Sonda_espacial*sonda, char * id){
 }
 
 void set_Compartimento(Sonda_espacial*sonda){
-    faz_compartimento_vazio(&sonda->Compartimento);
+    faz_compartimento_vazio(&sonda->Compartimento);//pode ter um erro aqui
 }
-void set_Localizacao(Sonda_espacial * sonda, char * latitude, char*longitude){
-    strcpy(sonda->Localizacao.Latitude, latitude);
-    strcpy(sonda->Localizacao.Longitude, longitude);
+void set_Localizacao_sonda(Sonda_espacial * sonda, char * latitude, char*longitude){
+    strcpy(sonda->Localizacao_sonda.Latitude, latitude);
+    strcpy(sonda->Localizacao_sonda.Longitude, longitude);
+}
+void set_Capacidade(Sonda_espacial *sonda, float capacidade){
+    sonda->Capacidade_sonda = capacidade;
+}
+void set_Velocidade(Sonda_espacial * sonda, float velocidade){
+    sonda->Velocidade_sonda = velocidade;
+}
+void set_Combustivel(Sonda_espacial * sonda, float combustivel){
+    sonda->Combustivel_sonda = combustivel;
 }
 void set_EstaLigada(Sonda_espacial *sonda, EstaLigada estado){
     sonda->EstaLigada = estado;
