@@ -13,10 +13,10 @@ typedef struct {
   Apontador Primeiro, Ultimo;
 }ListaMinerais;
 
-int lEhVazia(ListaMinerais* pLista);
-int lInsere(ListaMinerais* pLista, Mineral x);
-void fLVazia(ListaMinerais* pLista);
-int lRetira(ListaMinerais* pLista, Mineral *pX, char *nome);
-void lImprime(ListaMinerais* pLista);
+int listaMineraisEVazia(ListaMinerais* pLista);
+int insereMineralLista(ListaMinerais* pLista, Mineral x);
+void fListaMineraisVazia(ListaMinerais* pLista);
+int retiraMineralLista(ListaMinerais* pLista, Mineral *pX, char *nome);
+void imprimeListaMinerais(ListaMinerais* pLista);
 
 #endif

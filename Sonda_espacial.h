@@ -28,7 +28,7 @@ void move_Sonda_Espacial (Sonda_espacial * sonda);
 void set_Identificador(Sonda_espacial*sonda, char * id);
 void set_Compartimento(Sonda_espacial*sonda);
 void set_Localizacao(Sonda_espacial * sonda, char * latitude, char*longitude);
-void set_EstaLigada(Sonda_espacial *sonda, EstaLigada estado);
+void set_EstaLigada(Sonda_espacial *sonda);
 
 
 #endif
