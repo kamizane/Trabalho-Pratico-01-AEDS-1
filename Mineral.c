@@ -21,7 +21,7 @@ int preenche_mineral(Mineral * mineral){ //pede ao uzuário todas as informaçõ
     printf("Reatividade do mineral:\n");
     scanf("%f", &reatividade);
 
-    Inicializa(mineral, nome, cor, dureza, reatividade);
+    inicializa_mineral(mineral, nome, cor, dureza, reatividade);
 }
 
 int inicializa_mineral(Mineral * mineral, char nome[], char cor[], float dureza, float reatividade){ //joga tudo no tad
