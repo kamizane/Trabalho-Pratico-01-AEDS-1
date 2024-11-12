@@ -3,10 +3,10 @@
 #include <string.h>
 
 void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, char *latitude,char * longitude){
-    void Set_Identificador(sonda, id);
-    void Set_Compartimento(sonda);
-    void Set_Localizacao(sonda,latitude,longitude);
-    void Set_EstaLigada(sonda, estado);
+    set_Identificador(sonda, id);
+    set_Compartimento(sonda);
+    set_Localizacao(sonda,latitude,longitude);
+    set_EstaLigada(sonda);
 
 }
 void preenche_Sonda_Espacial(Sonda_espacial * sonda){
@@ -20,7 +20,7 @@ void preenche_Sonda_Espacial(Sonda_espacial * sonda){
     printf("Digite a longitude da Sonda espacial: ");
     scanf("%[^\n]", longitude);
 
-    Inicializa_Sonda_Espacial(sonda, id, latitude, longitude);
+    inicializa_Sonda_Espacial(sonda, id, latitude, longitude);
 
 }
 int liga_Sonda_Espacial(Sonda_espacial * sonda){
@@ -55,6 +55,6 @@ void set_Localizacao(Sonda_espacial * sonda, char * latitude, char*longitude){
     strcpy(sonda->Localizacao.Latitude, latitude);
     strcpy(sonda->Localizacao.Longitude, longitude);
 }
-void set_EstaLigada(Sonda_espacial *sonda, EstaLigada estado){
-    sonda->EstaLigada = estado;
+void set_EstaLigada(Sonda_espacial *sonda){
+    desliga_Sonda_Espacial(sonda);
 }
