@@ -61,3 +61,8 @@ void setLongitude(RochaMineral* rocha, char *longitude){
 void setDataColeta(RochaMineral* rocha, char *data){
     strcpy(rocha->dataColeta, data);
 }
+
+
+void escolhaCategoria(RochaMineral *rocha, ListaMinerais lista){
+    
+}
