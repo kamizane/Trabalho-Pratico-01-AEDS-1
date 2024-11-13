@@ -41,7 +41,7 @@ void cria_catalogo_minerais(Mineral minerais[5]){
 
 }
 
-int preenche_mineral(Mineral * mineral){ //pede ao uzuário todas as informações para inicializar
+void preenche_mineral(Mineral * mineral){ //pede ao uzuário todas as informações para inicializar
     char nome[20];
     char cor[20];
     float dureza;
