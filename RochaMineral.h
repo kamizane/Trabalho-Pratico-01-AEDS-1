@@ -17,8 +17,8 @@ typedef enum CategoriaRochaMineral {
 } CategoriaRochaMineral;
 
 typedef struct LocalRochaMineral{
-    char latitude[50];
-    char longitude[50];
+    float latitude;
+    float longitude;
 }LocalRochaMineral;
 
 
@@ -38,16 +38,16 @@ char *getId(RochaMineral* rocha);
 float getPeso(RochaMineral* rocha);
 CategoriaRochaMineral getCategoria(RochaMineral* rocha);
 ListaMinerais *getListaMinerais(RochaMineral* rocha);
-char *getLatitude(RochaMineral* rocha);
-char *getLongitude(RochaMineral* rocha);
+float getLatitude(RochaMineral* rocha);
+float getLongitude(RochaMineral* rocha);
 char *getDataColeta(RochaMineral* rocha);
 
 void setId(RochaMineral* rocha, char *id);
 void setPeso(RochaMineral* rocha, float peso);
 void setListaMinerais(RochaMineral* rocha, ListaMinerais* lista);
 void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria);
-void setLatitude(RochaMineral* rocha, char *latitude);
-void setLongitude(RochaMineral* rocha, char *longitude);
+void setLatitude(RochaMineral* rocha, float latitude);
+void setLongitude(RochaMineral* rocha, float longitude);
 void setDataColeta(RochaMineral* rocha, char *data);
 
 void escolheCategoria(RochaMineral *rocha);
