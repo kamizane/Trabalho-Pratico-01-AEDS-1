@@ -41,6 +41,28 @@ int imprime_compartimento(Compartimento* compartimento){
     return 1;
 }
 
+float retorna_peso_atual(Compartimento* compartimento){
+    float peso_atual;
+    Ccelula * celula;
+
+    peso_atual = 0;
+
+    if(compartimento_eh_vazio){
+        return peso_atual;
+    }
+
+    celula = compartimento->primeiro->prox;
+
+    do{
+
+        peso_atual += celula->rocha.peso;
+
+        celula = celula->prox;
+    }while(celula->prox != NULL);
+
+    return peso_atual;
+}
+
 int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
 
     Ccelula* celula;
