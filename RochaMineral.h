@@ -12,7 +12,7 @@ typedef enum CategoriaRochaMineral {
     AQUATERRA = 6,
     CALQUER = 7,
     SOLARISFER = 8,
-    TERRARIS = 9,
+    TERRALIS = 9,
     AQUACALIS = 10
 } CategoriaRochaMineral;
 
@@ -31,13 +31,13 @@ typedef struct RochaMineral{
     char dataColeta [10];
 }RochaMineral;
 
-void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, 
-    CategoriaRochaMineral categoria, LocalRochaMineral local, char dataColeta[10]);
+void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, ListaMinerais *lista,
+    LocalRochaMineral local, char dataColeta[10]);
 
 char *getId(RochaMineral* rocha);
 float getPeso(RochaMineral* rocha);
 CategoriaRochaMineral getCategoria(RochaMineral* rocha);
-ListaMinerais *getListaMinerais(RochaMineral* rocha, ListaMinerais* lista);
+ListaMinerais *getListaMinerais(RochaMineral* rocha);
 char *getLatitude(RochaMineral* rocha);
 char *getLongitude(RochaMineral* rocha);
 char *getDataColeta(RochaMineral* rocha);
@@ -50,7 +50,6 @@ void setLatitude(RochaMineral* rocha, char *latitude);
 void setLongitude(RochaMineral* rocha, char *longitude);
 void setDataColeta(RochaMineral* rocha, char *data);
 
-
-void escolhaCategoria(RochaMineral *rocha, ListaMinerais *lista);
+void escolheCategoria(RochaMineral *rocha);
 
 #endif
