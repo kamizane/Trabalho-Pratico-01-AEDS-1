@@ -27,6 +27,8 @@ int compartimento_eh_vazio(Compartimento* compartimento);
 
 int imprime_compartimento(Compartimento* compartimento);
 
+float retorna_peso_atual(Compartimento* compartimento);
+
 int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha);
 
 int inserir_rocha(Compartimento* compartimento, RochaMineral* rocha);
