@@ -29,10 +29,10 @@ CategoriaRochaMineral getCategoria(RochaMineral* rocha){
 ListaMinerais *getListaMinerais(RochaMineral* rocha){
     return rocha->lista;
 }
-char *getLatitude(RochaMineral* rocha){
+float getLatitude(RochaMineral* rocha){
     return rocha->local.latitude;
 }
-char *getLongitude(RochaMineral* rocha){
+float getLongitude(RochaMineral* rocha){
     return rocha->local.longitude;
 }
 char *getDataColeta(RochaMineral* rocha){
@@ -52,11 +52,11 @@ void setListaMinerais(RochaMineral* rocha, ListaMinerais* lista){
 void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria){
     rocha->categoria = categoria;
 }
-void setLatitude(RochaMineral* rocha, char *latitude){
-    strcpy(rocha->local.latitude, latitude);
+void setLatitude(RochaMineral* rocha, float latitude){
+    rocha->local.latitude, latitude;
 }
-void setLongitude(RochaMineral* rocha, char *longitude){
-    strcpy(rocha->local.longitude, longitude);
+void setLongitude(RochaMineral* rocha, float longitude){
+    rocha->local.longitude, longitude;
 }
 void setDataColeta(RochaMineral* rocha, char *data){
     strcpy(rocha->dataColeta, data);
