@@ -2,6 +2,28 @@
 #include <string.h>
 #include "Mineral.h"
 
+void inicializa_minerais(Mineral minerais[5]){
+   
+    Mineral Ferrolita;
+    Mineral Solarium;
+    Mineral Aquavitae;
+    Mineral Terranita;
+    Mineral Calaris;
+
+    inicializa_mineral(&Ferrolita, "Ferrolita", "cinza" , 0.5, 0.7);
+    inicializa_mineral(&Solarium, "Solarium", "amarelo" , 0.9, 0.2);
+    inicializa_mineral(&Aquavitae, "Aquavitae", "azul" , 0.5, 0.8);
+    inicializa_mineral(&Terranita, "Terranita", "marrom" , 0.7, 0.6);
+    inicializa_mineral(&Calaris, "Calaris", "vermelho" , 0.6, 0.5);
+
+    minerais[0] = Ferrolita;
+    minerais[1] = Solarium;
+    minerais[2] = Aquavitae;
+    minerais[3] = Terranita;
+    minerais[4] = Calaris;
+
+}
+
 int preenche_mineral(Mineral * mineral){ //pede ao uzuário todas as informações para inicializar
     char nome[20];
     char cor[20];
