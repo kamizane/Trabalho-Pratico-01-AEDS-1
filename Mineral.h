@@ -11,6 +11,7 @@ typedef struct Mineral {
     float reatividade;
 } Mineral;
 
+void inicializa_minerais(Mineral minerais[5]);
 
 int inicializa_mineral(Mineral * mineral, char * nome, char * cor, float dureza, float reatividade);
 
