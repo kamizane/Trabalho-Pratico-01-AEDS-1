@@ -51,4 +51,6 @@ void setLongitude(RochaMineral* rocha, char *longitude);
 void setDataColeta(RochaMineral* rocha, char *data);
 
 
+void escolhaCategoria(RochaMineral *rocha, ListaMinerais *lista);
+
 #endif

@@ -19,4 +19,8 @@ void fListaMineraisVazia(ListaMinerais* pLista);
 int retiraMineralLista(ListaMinerais* pLista, Mineral *pX, char *nome);
 void imprimeListaMinerais(ListaMinerais* pLista);
 
+ListaMinerais getListaMinerais(ListaMinerais *lista){
+  return *lista;
+}
+
 #endif

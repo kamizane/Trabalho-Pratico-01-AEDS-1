@@ -1,5 +1,6 @@
 #include "RochaMineral.h"
 #include "ListaMinerais.h"
+#include "Mineral.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -62,7 +63,3 @@ void setDataColeta(RochaMineral* rocha, char *data){
     strcpy(rocha->dataColeta, data);
 }
 
-
-void escolhaCategoria(RochaMineral *rocha, ListaMinerais lista){
-    
-}
