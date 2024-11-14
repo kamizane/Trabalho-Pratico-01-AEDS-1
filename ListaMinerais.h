@@ -19,7 +19,7 @@ typedef struct {
 int listaMineraisEVazia(ListaMinerais* pLista);
 int insereMineralLista(ListaMinerais* pLista, Mineral x);
 void fListaMineraisVazia(ListaMinerais* pLista);
-int retiraMineralLista(ListaMinerais* pLista, Mineral *pX, char *nome);
+int retiraMineralLista(ListaMinerais* pLista, char *nome);
 void imprimeListaMinerais(ListaMinerais* pLista);
 
 #endif
