@@ -15,11 +15,13 @@ typedef struct{
     Ccelula * primeiro;
     Ccelula * ultimo;
     int tamanho;
+    float peso_atual;
+    float peso_maximo;
 
 } Compartimento;
 
 
-void faz_compartimento_vazio(Compartimento* compartimento);
+void faz_compartimento_vazio(Compartimento* compartimento, float peso_max);
 
 int tamanho_do_compartimento(Compartimento* compartimento);
 
