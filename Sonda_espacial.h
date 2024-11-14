@@ -29,10 +29,9 @@ int liga_Sonda_Espacial(Sonda_espacial * sonda);
 int desliga_Sonda_Espacial(Sonda_espacial * sonda);
 void move_Sonda_Espacial (Sonda_espacial * sonda, float latitude, float longitude);
 void set_Identificador(Sonda_espacial*sonda, char * id);
-void set_Compartimento(Sonda_espacial*sonda);
+void set_Compartimento(Sonda_espacial*sonda, float capacidade);
 
 void set_Localizacao_sonda(Sonda_espacial * sonda, float latitude, float longitude);
-void set_Capacidade(Sonda_espacial *sonda, float capacidade);
 void set_Velocidade(Sonda_espacial * sonda, float velocidade);
 void set_Combustivel(Sonda_espacial * sonda, float combustivel);
 void set_EstaLigada(Sonda_espacial *sonda, EstaLigada estado);

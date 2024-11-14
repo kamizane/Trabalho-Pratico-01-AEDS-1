@@ -23,6 +23,7 @@ void insere_item_lista_sonda_espacial(Lista_sonda_espacial * lista_sonda, Sonda_
 int retira_item_lista_sonda_espacial(Lista_sonda_espacial* lista_sonda, char * id, Sonda_espacial * pitem){
     if (verifica_lista_vazia(lista_sonda)){
         return 0;
+
     }
     else{
         //percorre a lista de 2 a 2 para que quando encontrar o item a ser removido o pProx anterior consiga apontar para o próximo item após remoção.
