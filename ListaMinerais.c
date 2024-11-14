@@ -17,42 +17,43 @@ int insereMineralLista(ListaMinerais* pLista, Mineral x){
         //se a lista estiver cheia, não é possível adicionar o mineral
         return 0;
     }
-    //adicionando o mineral x na ultima posição da lista
+    //adicionando o mineral x na última posição disponível
     pLista->minerais[pLista->Ultimo] = x;
-    //somando 1 no apontador Ultimo, já que existe mais um mineral na lista
+
+    //incrementando o Apontador Ultimo, já que temos mais um elemento na lista
     pLista->Ultimo++;
+
     //inserção concluída
     return 1;
 }
 
 //função que cria uma lista vazia de minerais
 void fListaMineraisVazia(ListaMinerais* pLista){
+    //Apontador Primeiro = 0
     pLista->Primeiro = InicioArranjo;
+    //Apontador Ultimo = 0
     pLista->Ultimo = pLista->Primeiro;
 }
 
 //função que retira um mineral da lista a partir do nome do mineral
-void retiraMineralLista(ListaMinerais* pLista, Mineral *pX, char *nome){
-    
+int retiraMineralLista(ListaMinerais* pLista, char *nome){
     //certificando que a lista não é vazia
     if (listaMineraisEVazia(pLista)){
         return 0;
-    }else{ 
+    }else{
 
         //passando por todos os elementos da lista procurando o nome desejado
         for (int i = pLista->Primeiro; i <= pLista->Ultimo; i++){
             //comparando o nome desejado com o nome do mineral da posição i da lista de minerais
             if(strcmp(pLista->minerais[i].nome, nome) == 0){
-                //mineral encontrado; o atribuindo a pX
-                *pX = pLista->minerais[i];
-
-                /*passando os minerais seguintes para a posição anterior, 
-                já que um espaço deve ficar vazio*/
-                for(int j = i+1; j < pLista->Ultimo; j++){
-                    pLista->minerais[j-1] = pLista->minerais[j];
-                }
+                
                 //subtraindo 1 do Apontador Ultimo, pois temos um item a menos na lista
                 pLista->Ultimo--;
+
+                //passando os minerais seguintes ao 'minerais[i]' para a posição anterior
+                for(int j = i+1; j <= pLista->Ultimo; j++){
+                    pLista->minerais[j-1] = pLista->minerais[j];
+                }
 
                 //remoção concluída
                 return 1;
