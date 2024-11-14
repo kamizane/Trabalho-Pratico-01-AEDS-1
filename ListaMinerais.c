@@ -5,50 +5,68 @@
 #define InicioArranjo 0
 #define MaxTam 3
 
-//verificar se lista é vazia
+//função que verifica se lista é vazia
 int listaMineraisEVazia(ListaMinerais* pLista){
     return (pLista->Ultimo == pLista->Primeiro);
 }
 
+//função que insere um novo mineral na lista
 int insereMineralLista(ListaMinerais* pLista, Mineral x){
+    //certificando que a lista não está cheia - tamanho 3 ou maior
     if (pLista->Ultimo == MaxTam){
+        //se a lista estiver cheia, não é possível adicionar o mineral
         return 0;
     }
+    //adicionando o mineral x na ultima posição da lista
     pLista->minerais[pLista->Ultimo] = x;
+    //somando 1 no apontador Ultimo, já que existe mais um mineral na lista
     pLista->Ultimo++;
+    //inserção concluída
     return 1;
 }
 
+//função que cria uma lista vazia de minerais
 void fListaMineraisVazia(ListaMinerais* pLista){
     pLista->Primeiro = InicioArranjo;
     pLista->Ultimo = pLista->Primeiro;
 }
 
+//função que retira um mineral da lista a partir do nome do mineral
 void retiraMineralLista(ListaMinerais* pLista, Mineral *pX, char *nome){
     
-    if (lEhVazia(pLista)){
+    //certificando que a lista não é vazia
+    if (listaMineraisEVazia(pLista)){
         return 0;
-    }else{
-        //*pX = pLista->minerais[p];
-        //pLista->Ultimo--;  
+    }else{ 
 
+        //passando por todos os elementos da lista procurando o nome desejado
         for (int i = pLista->Primeiro; i <= pLista->Ultimo; i++){
-            if(strcmp(pLista->minerais[i].nome, *nome) == 0){
+            //comparando o nome desejado com o nome do mineral da posição i da lista de minerais
+            if(strcmp(pLista->minerais[i].nome, nome) == 0){
+                //mineral encontrado; o atribuindo a pX
                 *pX = pLista->minerais[i];
 
+                /*passando os minerais seguintes para a posição anterior, 
+                já que um espaço deve ficar vazio*/
                 for(int j = i+1; j < pLista->Ultimo; j++){
                     pLista->minerais[j-1] = pLista->minerais[j];
                 }
-
+                //subtraindo 1 do Apontador Ultimo, pois temos um item a menos na lista
                 pLista->Ultimo--;
+
+                //remoção concluída
+                return 1;
             }
         }
+        //não foi encontrado o mineral
+        return 0;
     }
     
 } 
 
+//digitando os atributos de cada elemento da lista
 void imprimeListaMinerais(ListaMinerais* pLista){
-    for (int i = pLista->Primeiro; i < pLista->Ultimo; i++){
+    for(int i = pLista->Primeiro; i < pLista->Ultimo; i++){
         printf("Nome: %s, Cor: %s, Dureza: %f, Reatividade: %f\n", 
         pLista->minerais[i].nome, pLista->minerais[i].cor, pLista->minerais[i].dureza,
         pLista->minerais[i].reatividade);
