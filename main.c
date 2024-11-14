@@ -93,7 +93,71 @@ int main(int argc,char **argv){
     
     }
     else{
-            
+        int numero_de_sondas; //separa o numero de sondas 
+        Lista_sonda_espacial Lista_de_sondas_terminal; //cria lista de sondas
+        
+        inicializa_lista_sonda_espacial(&Lista_de_sondas_terminal);//inicializa lista de sondas
+        scanf("%d", &numero_de_sondas); //recebe o numero de sondas de entrada
+        
+        for(int i = 0; i<numero_de_sondas; i++){; //recebe todas as variaveis de acordo com o numero de sondas
+
+            char id =(char)i;
+            Sonda_espacial sonda;
+            float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
+            scanf("%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
+            inicializa_Sonda_Espacial(&sonda,&id,lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);//inicializa as sondas com as variaveis recebidas
+            insere_item_lista_sonda_espacial(&Lista_de_sondas_terminal,&sonda);//adiciona a sonda na lista de sondas
+        }
+        
+        int N_instrucao_terminal; //cria variavel N_instrucao (numero de operaçoes que vao ser feitas)
+        scanf("%d", &N_instrucao_terminal); //recebe a N_instrucao (numero de operaçoes que vao ser feitas)
+        for(int i = 0; i<N_instrucao_terminal; i++){ //para cada N_instrucao lê a instrucao e realiza ela, chamando a função pronta
+            char instrucao_terminal;
+            scanf("%c", &instrucao_terminal);
+            switch (instrucao_terminal)
+            {
+            case 'R': //coleta de uma nova rocha
+                char linha_terminal[255];
+                scanf("%[^\n]", &linha_terminal);
+                char * buffer = NULL;
+                const char delim[2] = " ";
+                buffer = strtok(linha_terminal,delim);
+                float lat_rocha_terminal =  atof (buffer);
+                buffer = strtok(NULL,delim);
+                float long_rocha_terminal = atof(buffer);
+                buffer = strtok(NULL,delim);
+                float peso_rocha_terminal = atof (buffer);
+                int counter = 0;
+                char aux[20];
+                Mineral minerais_terminal[3];
+                ListaMinerais lista_minerais_terminal;
+                fListaMineraisVazia(&lista_minerais_terminal);
+                while(buffer != NULL){
+                    buffer = strtok(NULL,delim);
+                    strcpy(aux,buffer);
+                    inicializa_mineral(&minerais_terminal[i],aux);
+                    insereMineralLista(&lista_minerais_terminal,minerais_terminal[i]);
+
+
+                    i++;
+                }
+                operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
+                break;
+
+            case 'I':
+
+                operacao_I(&Lista_de_sondas_terminal);
+                
+                break;
+
+            case 'E':
+                break;
+
+            default:
+                break;
+            }
+        }
+        
     }
     return 0;
 }
