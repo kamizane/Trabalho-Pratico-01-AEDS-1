@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+//função para inicializar uma rocha
 void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, ListaMinerais *lista, LocalRochaMineral local, char dataColeta[10]){
-        
+
     setId(rocha, id);
     setPeso(rocha, peso);
     setListaMinerais(rocha, lista);
@@ -17,6 +18,7 @@ void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, ListaM
 
 }
 
+//obtenção de valores (gets)
 char *getId(RochaMineral* rocha){
     return rocha->id;
 }
@@ -39,7 +41,7 @@ char *getDataColeta(RochaMineral* rocha){
     return rocha->dataColeta;
 }
 
-
+//definição de valores (sets)
 void setId(RochaMineral* rocha, char *id){
     strcpy(rocha->id, id);
 }
@@ -62,24 +64,31 @@ void setDataColeta(RochaMineral* rocha, char *data){
     strcpy(rocha->dataColeta, data);
 }
 
+//função que define a categoria da rocha a partir da lista de minerais
 void escolheCategoria(RochaMineral *rocha){
+    //obtendo a lista de minerais da rocha
     ListaMinerais *lista = getListaMinerais(rocha);
     
+    //definindo variáveis booleanas para verificar se existe cada mineral na lista
     int tFerrolita = 0, tSolarium = 0, tAquavitae = 0, tTerranita = 0, tCalaris = 0;
+
+    //passando por todas as posições da lista de minerais
     for(int i = 0; i < 3; i++){
-        if(strcmp(lista->minerais[i].nome, "FERROLITA") == 0){
+        //verificando, a partir do nome do mineral, qual mineral está na posição i
+        if(strcmp(lista->minerais[i].nome, "Ferrolita") == 0){
             tFerrolita = 1;
-        }else if(strcmp(lista->minerais[i].nome, "SOLARIUM") == 0){
+        }else if(strcmp(lista->minerais[i].nome, "Solarium") == 0){
             tSolarium = 1;
-        }else if(strcmp(lista->minerais[i].nome, "AQUAVITAE") == 0){
+        }else if(strcmp(lista->minerais[i].nome, "Aquavitae") == 0){
             tAquavitae = 1;
-        }else if(strcmp(lista->minerais[i].nome, "TERRANITA") == 0){
+        }else if(strcmp(lista->minerais[i].nome, "Terranita") == 0){
             tTerranita = 1;
         }else{
             tCalaris = 1;
         } 
     }
 
+    //definindo a categoria da rocha de acordo com os minerais que estão presentes na lista
     if(tAquavitae && tCalaris && tFerrolita){
         setCategoria(rocha, AQUACALIS);
 
@@ -110,8 +119,4 @@ void escolheCategoria(RochaMineral *rocha){
     }else if (tFerrolita){
         setCategoria(rocha, FERROM);
     }
-    
-    
-    
-    
 }
