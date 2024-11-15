@@ -14,7 +14,7 @@ void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, ListaMinera
     escolheCategoria(rocha);
     setLatitude(rocha, local.latitude);
     setLongitude(rocha, local.longitude);
-    setData(rocha, dataColeta);
+    setDataColeta(rocha, dataColeta);
 
 }
 
@@ -43,7 +43,7 @@ char *getDataColeta(RochaMineral* rocha){
 
 //definição de valores (sets)
 void setId(RochaMineral* rocha, int id){
-    strcpy(rocha->id, id);
+    rocha->id = id;
 }
 void setPeso(RochaMineral* rocha, float peso){
     rocha->peso = peso;
@@ -55,10 +55,10 @@ void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria){
     rocha->categoria = categoria;
 }
 void setLatitude(RochaMineral* rocha, float latitude){
-    rocha->local.latitude, latitude;
+    rocha->local.latitude = latitude;
 }
 void setLongitude(RochaMineral* rocha, float longitude){
-    rocha->local.longitude, longitude;
+    rocha->local.longitude = longitude;
 }
 void setDataColeta(RochaMineral* rocha, char *data){
     strcpy(rocha->dataColeta, data);
