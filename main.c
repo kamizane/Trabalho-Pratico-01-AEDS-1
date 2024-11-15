@@ -115,6 +115,7 @@ int main(int argc,char **argv){
             switch (instrucao_terminal)
             {
             case 'R': //coleta de uma nova rocha
+            {
                 char linha_terminal[255];
                 scanf("%[^\n]", &linha_terminal);
                 char * buffer = NULL;
@@ -141,7 +142,7 @@ int main(int argc,char **argv){
                 }
                 operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
                 break;
-
+            }
             case 'I':
 
                 operacao_I(&Lista_de_sondas_terminal);
