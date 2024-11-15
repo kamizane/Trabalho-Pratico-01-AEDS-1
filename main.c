@@ -12,9 +12,7 @@
 
 void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long_rocha, float peso_rocha, ListaMinerais* lista_minerais);//falta ver se ja tenho o tipo categoria naquela sonda e se ela tem espaço.
 float calcula_distancia(float x1, float y1, float x2, float y2);
-
 void operacao_I(Lista_sonda_espacial * lista_sondas);
-
 int operacao_E(Lista_sonda_espacial * lista_sondas);
 
 int main(int argc,char **argv){
@@ -177,9 +175,15 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
     for (int i=0;i<cont;i++){
         distancia = calcula_distancia(aux->item_sonda.Localizacao_sonda.Longitude,aux->item_sonda.Localizacao_sonda.Latitude, long_rocha, lat_rocha);
         //é ruim passar a latitude assim? deveria chamar uma função get?
-        if (distancia < menor_d && (/*&& (verificar se tem capacidade ||*/ )){
-            menor_d = distancia;
-            sonda_mais_perto = aux;
+        if (distancia < menor_d){
+            if(trocar_rocha(&aux->item_sonda.Compartimento.primeiro->prox->rocha,&rocha_file)){
+                menor_d = distancia;
+                sonda_mais_perto = aux;
+            }
+            else if ((aux->item_sonda.Compartimento.peso_atual + rocha_file.peso) <= aux->item_sonda.Compartimento.peso_maximo ){
+                menor_d = distancia;
+                sonda_mais_perto = aux;
+            }
             strcpy(id_sonda_mais_perto,aux->item_sonda.Identificador);
         }
         aux = aux->pProx;
