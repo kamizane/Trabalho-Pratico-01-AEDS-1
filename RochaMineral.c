@@ -6,7 +6,7 @@
 #include <string.h>
 
 //função para inicializar uma rocha
-void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, ListaMinerais *lista, LocalRochaMineral local, char dataColeta[10]){
+void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, ListaMinerais *lista, LocalRochaMineral local, char dataColeta[10]){
 
     setId(rocha, id);
     setPeso(rocha, peso);
@@ -19,7 +19,7 @@ void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, ListaM
 }
 
 //obtenção de valores (gets)
-char *getId(RochaMineral* rocha){
+int getId(RochaMineral* rocha){
     return rocha->id;
 }
 float getPeso(RochaMineral* rocha){
@@ -42,7 +42,7 @@ char *getDataColeta(RochaMineral* rocha){
 }
 
 //definição de valores (sets)
-void setId(RochaMineral* rocha, char *id){
+void setId(RochaMineral* rocha, int id){
     strcpy(rocha->id, id);
 }
 void setPeso(RochaMineral* rocha, float peso){
