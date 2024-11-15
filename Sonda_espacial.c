@@ -4,14 +4,11 @@
 
 void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, float latitude,float longitude, float capacidade, float velocidade, float combustivel){
     set_Identificador(sonda, id);
-    set_Compartimento(sonda);
+    set_Compartimento(sonda, capacidade);
     set_Localizacao_sonda(sonda,latitude,longitude);
-    set_Capacidade(sonda,capacidade);
     set_Velocidade(sonda, velocidade);
     set_Combustivel(sonda, combustivel);
     set_EstaLigada(sonda, OFF);
-
-
 }
 void preenche_Sonda_Espacial(Sonda_espacial * sonda){
     char id[20];
@@ -56,15 +53,12 @@ void set_Identificador(Sonda_espacial*sonda, char * id){
     strcpy(sonda->Identificador, id);
 }
 
-void set_Compartimento(Sonda_espacial*sonda){
-    faz_compartimento_vazio(&sonda->Compartimento);//pode ter um erro aqui
+void set_Compartimento(Sonda_espacial*sonda, float capacidade){
+    faz_compartimento_vazio(&sonda->Compartimento, capacidade);//pode ter um erro aqui
 }
 void set_Localizacao_sonda(Sonda_espacial * sonda, float latitude, float longitude){
     sonda->Localizacao_sonda.Latitude = latitude;
     sonda->Localizacao_sonda.Longitude = longitude;
-}
-void set_Capacidade(Sonda_espacial *sonda, float capacidade){
-    sonda->Capacidade_sonda = capacidade;
 }
 void set_Velocidade(Sonda_espacial * sonda, float velocidade){
     sonda->Velocidade_sonda = velocidade;
