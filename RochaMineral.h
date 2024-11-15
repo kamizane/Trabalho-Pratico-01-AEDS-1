@@ -3,6 +3,7 @@
 
 #include "./ListaMinerais.h"
 
+//declarando a categoria da rocha mineral como um enumerate
 typedef enum CategoriaRochaMineral {
     FERROM = 1,
     SOLARIS = 2,
@@ -16,12 +17,13 @@ typedef enum CategoriaRochaMineral {
     AQUACALIS = 10
 } CategoriaRochaMineral;
 
+//estabelecendo a localização da rocha mineral como uma estrutura que possui latitude e longitude
 typedef struct LocalRochaMineral{
     float latitude;
     float longitude;
 }LocalRochaMineral;
 
-
+//definição do tipo RochaMineral
 typedef struct RochaMineral{
     char id[20];
     float peso;
@@ -30,6 +32,8 @@ typedef struct RochaMineral{
     LocalRochaMineral local;
     char dataColeta [10];
 }RochaMineral;
+
+//cabeçalho das funções
 
 void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, ListaMinerais *lista,
     LocalRochaMineral local, char dataColeta[10]);

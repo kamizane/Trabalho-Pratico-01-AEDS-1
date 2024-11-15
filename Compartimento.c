@@ -4,12 +4,14 @@
 #include "Compartimento.h"
 
 
-void faz_compartimento_vazio(Compartimento* compartimento){
+void faz_compartimento_vazio(Compartimento* compartimento, float peso_max){
 
     compartimento->primeiro = (Ccelula*) malloc(sizeof(Ccelula));
     compartimento->ultimo = compartimento->primeiro;
     compartimento->primeiro->prox = NULL;
     compartimento->tamanho = 0;
+    compartimento->peso_atual = 0;
+    compartimento->peso_maximo = peso_max;
 
 }
 
@@ -32,7 +34,7 @@ int imprime_compartimento(Compartimento* compartimento){
     celula = compartimento->primeiro->prox;
     do{
         
-        printf("%s",celula->rocha.categoria);
+        printf("%s %f",celula->rocha.categoria, celula->rocha.peso);
         
         celula = celula->prox;
 
@@ -42,25 +44,7 @@ int imprime_compartimento(Compartimento* compartimento){
 }
 
 float retorna_peso_atual(Compartimento* compartimento){
-    float peso_atual;
-    Ccelula * celula;
-
-    peso_atual = 0;
-
-    if(compartimento_eh_vazio){
-        return peso_atual;
-    }
-
-    celula = compartimento->primeiro->prox;
-
-    do{
-
-        peso_atual += celula->rocha.peso;
-
-        celula = celula->prox;
-    }while(celula->prox != NULL);
-
-    return peso_atual;
+    return compartimento->peso_atual;
 }
 
 int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
@@ -73,7 +57,9 @@ int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
         if (celula->rocha.categoria == rocha->categoria){
 
             if (celula->rocha.peso <= rocha->peso){
+                compartimento->peso_atual -= celula->rocha.peso;
                 celula->rocha = *rocha;
+                compartimento->peso_atual += celula->rocha.peso;
                 return 1;
             }
         }
@@ -85,15 +71,17 @@ int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
 }
 
 int inserir_rocha(Compartimento* compartimento, RochaMineral* rocha){
-
-    compartimento->ultimo->prox = (Ccelula*) malloc(sizeof(Ccelula));
-    compartimento->ultimo = compartimento->ultimo->prox;
-    compartimento->ultimo->rocha = *rocha;
-    compartimento->ultimo->prox = NULL;
-    compartimento->tamanho++;
+    if((compartimento->peso_atual + rocha->peso) <= compartimento->peso_maximo){
+        compartimento->ultimo->prox = (Ccelula*) malloc(sizeof(Ccelula));
+        compartimento->ultimo = compartimento->ultimo->prox;
+        compartimento->ultimo->rocha = *rocha;
+        compartimento->ultimo->prox = NULL;
+        compartimento->tamanho++;
+        compartimento->peso_atual += rocha->peso;
+        return 1;
+    }
 
     return 0;
-
 }
 
 int remover_rocha(Compartimento* compartimento, char categoria[]){ //
@@ -146,13 +134,14 @@ int remover_rocha(Compartimento* compartimento, char categoria[]){ //
 
         if(strcmp(categoria, categoria_da_rocha) == 0){
             anterior->prox = celula->prox;
-            
+            compartimento->peso_atual -= celula->rocha.peso;
             free(celula);
             compartimento->tamanho--;
 
             return 1; 
 
         }
+        
         
         anterior = celula;
         celula = celula->prox;
