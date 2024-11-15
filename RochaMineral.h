@@ -25,7 +25,7 @@ typedef struct LocalRochaMineral{
 
 //definição do tipo RochaMineral
 typedef struct RochaMineral{
-    char id[20];
+    int id;
     float peso;
     ListaMinerais *lista;
     CategoriaRochaMineral categoria;
@@ -35,10 +35,10 @@ typedef struct RochaMineral{
 
 //cabeçalho das funções
 
-void inicializaRochaMineral(RochaMineral *rocha, char id[20], float peso, ListaMinerais *lista,
+void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, ListaMinerais *lista,
     LocalRochaMineral local, char dataColeta[10]);
 
-char *getId(RochaMineral* rocha);
+int getId(RochaMineral* rocha);
 float getPeso(RochaMineral* rocha);
 CategoriaRochaMineral getCategoria(RochaMineral* rocha);
 ListaMinerais *getListaMinerais(RochaMineral* rocha);
@@ -46,7 +46,7 @@ float getLatitude(RochaMineral* rocha);
 float getLongitude(RochaMineral* rocha);
 char *getDataColeta(RochaMineral* rocha);
 
-void setId(RochaMineral* rocha, char *id);
+void setId(RochaMineral* rocha, int id);
 void setPeso(RochaMineral* rocha, float peso);
 void setListaMinerais(RochaMineral* rocha, ListaMinerais* lista);
 void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria);
