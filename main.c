@@ -49,10 +49,11 @@ int main(int argc,char **argv){
         for(int i=0;i<N_instrucao;i++){
             char instrucao;
             fscanf(file,"%c",&instrucao);
+            char linha[255];
             switch (instrucao)
             {
             case 'R':
-                char linha[255];
+                
                 fgets(linha,255,file);
                 char * buffer = NULL;
                 const char delim[2] = " ";
@@ -112,10 +113,11 @@ int main(int argc,char **argv){
         for(int i = 0; i<N_instrucao_terminal; i++){ //para cada N_instrucao lê a instrucao e realiza ela, chamando a função pronta
             char instrucao_terminal;
             scanf("%c", &instrucao_terminal);
+            
             switch (instrucao_terminal)
             {
             case 'R': //coleta de uma nova rocha
-                char linha_terminal[255];
+                {char linha_terminal[255];
                 scanf("%[^\n]", &linha_terminal);
                 char * buffer = NULL;
                 const char delim[2] = " ";
@@ -140,7 +142,7 @@ int main(int argc,char **argv){
                     i++;
                 }
                 operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
-                break;
+                break;}
 
             case 'I':
 
@@ -181,7 +183,7 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
         distancia = calcula_distancia(aux->item_sonda.Localizacao_sonda.Longitude,aux->item_sonda.Localizacao_sonda.Latitude, long_rocha, lat_rocha);
         //é ruim passar a latitude assim? deveria chamar uma função get?
         if (distancia < menor_d){
-            if(trocar_rocha(&aux->item_sonda.Compartimento.primeiro->prox->rocha,&rocha_file)){
+            if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file)){
                 menor_d = distancia;
                 sonda_mais_perto = aux;
             }
