@@ -8,16 +8,22 @@
 
 //definindo o tipo Apontador
 typedef int Apontador;
+typedef Mineral TChave;
+
+typedef struct TItem
+{
+  TChave Chave;
+}TItem;
 
 //definindo o tipo ListaMinerais
-typedef struct {
-  Mineral minerais[MaxTam];
+typedef struct ListaMinerais{
+  TItem minerais[MaxTam];
   Apontador Primeiro, Ultimo;
 }ListaMinerais;
 
 //cabeçalho das funções básicas
 int listaMineraisEVazia(ListaMinerais* pLista);
-int insereMineralLista(ListaMinerais* pLista, Mineral x);
+int insereMineralLista(ListaMinerais* pLista, TItem x);
 void fListaMineraisVazia(ListaMinerais* pLista);
 int retiraMineralLista(ListaMinerais* pLista, char *nome);
 void imprimeListaMinerais(ListaMinerais* pLista);

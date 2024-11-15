@@ -11,7 +11,7 @@ int listaMineraisEVazia(ListaMinerais* pLista){
 }
 
 //função que insere um novo mineral na lista
-int insereMineralLista(ListaMinerais* pLista, Mineral x){
+int insereMineralLista(ListaMinerais* pLista, TItem x){
     //certificando que a lista não está cheia - tamanho 3 ou maior
     if (pLista->Ultimo == MaxTam){
         //se a lista estiver cheia, não é possível adicionar o mineral
@@ -45,7 +45,8 @@ int retiraMineralLista(ListaMinerais* pLista, char *nome){
         //passando por todos os elementos da lista procurando o nome desejado
         for (int i = pLista->Primeiro; i <= pLista->Ultimo; i++){
             //comparando o nome desejado com o nome do mineral da posição i da lista de minerais
-            if(strcmp(pLista->minerais[i].nome, nome) == 0){
+            TChave m = pLista->minerais[i].Chave;
+            if(strcmp(m.nome, nome) == 0){
                 
                 //subtraindo 1 do Apontador Ultimo, pois temos um item a menos na lista
                 pLista->Ultimo--;
@@ -68,9 +69,9 @@ int retiraMineralLista(ListaMinerais* pLista, char *nome){
 //digitando os atributos de cada elemento da lista
 void imprimeListaMinerais(ListaMinerais* pLista){
     for(int i = pLista->Primeiro; i < pLista->Ultimo; i++){
+        TChave m = pLista->minerais[i].Chave;
         printf("Nome: %s, Cor: %s, Dureza: %f, Reatividade: %f\n", 
-        pLista->minerais[i].nome, pLista->minerais[i].cor, pLista->minerais[i].dureza,
-        pLista->minerais[i].reatividade);
+        m.nome, m.cor, m.dureza, m.reatividade);
     }
 } 
 

@@ -1,7 +1,7 @@
 #ifndef ROCHA_MINERAL_H
 #define ROCHA_MINERAL_H
 
-#include "./ListaMinerais.h"
+#include "ListaMinerais.h"
 
 //declarando a categoria da rocha mineral como um enumerate
 typedef enum CategoriaRochaMineral {

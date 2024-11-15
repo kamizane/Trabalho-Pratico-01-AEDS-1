@@ -74,14 +74,15 @@ void escolheCategoria(RochaMineral *rocha){
 
     //passando por todas as posições da lista de minerais
     for(int i = 0; i < 3; i++){
+        TChave m = rocha->lista->minerais[i].Chave;
         //verificando, a partir do nome do mineral, qual mineral está na posição i
-        if(strcmp(lista->minerais[i].nome, "Ferrolita") == 0){
+        if(strcmp(m.nome, "Ferrolita") == 0){
             tFerrolita = 1;
-        }else if(strcmp(lista->minerais[i].nome, "Solarium") == 0){
+        }else if(strcmp(m.nome, "Solarium") == 0){
             tSolarium = 1;
-        }else if(strcmp(lista->minerais[i].nome, "Aquavitae") == 0){
+        }else if(strcmp(m.nome, "Aquavitae") == 0){
             tAquavitae = 1;
-        }else if(strcmp(lista->minerais[i].nome, "Terranita") == 0){
+        }else if(strcmp(m.nome, "Terranita") == 0){
             tTerranita = 1;
         }else{
             tCalaris = 1;
