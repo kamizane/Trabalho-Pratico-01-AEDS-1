@@ -178,7 +178,7 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
         distancia = calcula_distancia(aux->item_sonda.Localizacao_sonda.Longitude,aux->item_sonda.Localizacao_sonda.Latitude, long_rocha, lat_rocha);
         //é ruim passar a latitude assim? deveria chamar uma função get?
         if (distancia < menor_d){
-            if(trocar_rocha(&aux->item_sonda.Compartimento.primeiro->prox->rocha,&rocha_file)){
+            if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file)){
                 menor_d = distancia;
                 sonda_mais_perto = aux;
             }
