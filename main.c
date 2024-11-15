@@ -135,7 +135,7 @@ int main(int argc,char **argv){
                 while(buffer != NULL){
                     buffer = strtok(NULL,delim);
                     strcpy(aux,buffer);
-                    inicializa_mineral(&minerais_terminal[i],aux);
+                    atribui_mineral(&minerais_terminal[i],aux);
                     insereMineralLista(&lista_minerais_terminal,minerais_terminal[i]);
 
 
@@ -151,9 +151,11 @@ int main(int argc,char **argv){
                 break;
 
             case 'E':
+                operacao_E(&Lista_de_sondas_terminal);
                 break;
 
             default:
+                printf("operacao invalida");
                 break;
             }
         }
