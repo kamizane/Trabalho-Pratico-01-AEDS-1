@@ -6,7 +6,7 @@
 #include <string.h>
 
 //função para inicializar uma rocha
-void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, ListaMinerais *lista, LocalRochaMineral local, char dataColeta[10]){
+void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, MLista *lista, LocalRochaMineral local, char dataColeta[10]){
 
     setId(rocha, id);
     setPeso(rocha, peso);
@@ -28,7 +28,7 @@ float getPeso(RochaMineral* rocha){
 CategoriaRochaMineral getCategoria(RochaMineral* rocha){
     return rocha->categoria;
 }
-ListaMinerais *getListaMinerais(RochaMineral* rocha){
+MLista *getListaMinerais(RochaMineral* rocha){
     return rocha->lista;
 }
 float getLatitude(RochaMineral* rocha){
@@ -48,7 +48,7 @@ void setId(RochaMineral* rocha, int id){
 void setPeso(RochaMineral* rocha, float peso){
     rocha->peso = peso;
 }
-void setListaMinerais(RochaMineral* rocha, ListaMinerais* lista){
+void setListaMinerais(RochaMineral* rocha, MLista* lista){
     rocha->lista = lista;
 }
 void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria){
@@ -66,8 +66,6 @@ void setDataColeta(RochaMineral* rocha, char *data){
 
 //função que define a categoria da rocha a partir da lista de minerais
 void escolheCategoria(RochaMineral *rocha){
-    //obtendo a lista de minerais da rocha
-    ListaMinerais *lista = getListaMinerais(rocha);
     
     //definindo variáveis booleanas para verificar se existe cada mineral na lista
     int tFerrolita = 0, tSolarium = 0, tAquavitae = 0, tTerranita = 0, tCalaris = 0;

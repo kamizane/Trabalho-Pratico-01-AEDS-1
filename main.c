@@ -70,7 +70,9 @@ int main(int argc,char **argv){
                     buffer = strtok(NULL,delim);
                     strcpy(nome_mineral,buffer);
                     atribui_mineral(&minerais[i],nome_mineral);
-                    insereMineralLista(&lista_minerais_file,minerais[i]);
+                    TItem a; 
+                    a.Chave = minerais[i];
+                    insereMineralLista(&lista_minerais_file, a);
                     //strcpy(minerais[i].nome,buffer);//corrigir
                     i++;
                 }
@@ -136,7 +138,9 @@ int main(int argc,char **argv){
                     buffer = strtok(NULL,delim);
                     strcpy(aux,buffer);
                     atribui_mineral(&minerais_terminal[i],aux);
-                    insereMineralLista(&lista_minerais_terminal,minerais_terminal[i]);
+                    TItem x;
+                    x.Chave = minerais_terminal[i];
+                    insereMineralLista(&lista_minerais_terminal, x);
 
 
                     i++;
