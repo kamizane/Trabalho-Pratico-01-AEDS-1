@@ -167,10 +167,7 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
     local.latitude = lat_rocha;
     local.longitude = long_rocha;
     RochaMineral rocha_file;
-
-    static int contId = 1;
-
-    inicializaRochaMineral(&rocha_file, contId, peso_rocha , lista_minerais,local,"00:00:00");
+    inicializaRochaMineral(&rocha_file,"oi", peso_rocha , lista_minerais,local,"00:00:00");
     int cont = lista_sondas->QntItens;
     float menor_d;
     float distancia;
@@ -181,7 +178,7 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
         distancia = calcula_distancia(aux->item_sonda.Localizacao_sonda.Longitude,aux->item_sonda.Localizacao_sonda.Latitude, long_rocha, lat_rocha);
         //é ruim passar a latitude assim? deveria chamar uma função get?
         if (distancia < menor_d){
-            if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file)){
+            if(trocar_rocha(&aux->item_sonda.Compartimento.primeiro->prox->rocha,&rocha_file)){
                 menor_d = distancia;
                 sonda_mais_perto = aux;
             }
@@ -196,7 +193,7 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
     move_Sonda_Espacial(&sonda_mais_perto->item_sonda,lat_rocha,long_rocha);
     inserir_rocha(&sonda_mais_perto->item_sonda.Compartimento, &rocha_file);
 
-    contId++;
+    
 }
 
 float calcula_distancia(float x1, float y1, float x2, float y2){
