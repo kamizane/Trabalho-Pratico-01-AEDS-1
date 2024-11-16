@@ -34,7 +34,7 @@ int imprime_compartimento(Compartimento* compartimento){
     celula = compartimento->primeiro->prox;
     do{
    
-        printf("%d %f\n",celula->rocha.categoria, celula->rocha.peso);
+        printf("%s %.2f\n",celula->rocha.categoria, celula->rocha.peso);
         
         celula = celula->prox;
       
@@ -56,7 +56,7 @@ int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
         do{
           
             
-                if (celula->rocha.categoria == rocha->categoria){  
+                if (strcmp(celula->rocha.categoria,rocha->categoria) == 0){  
                  
 
                     if (celula->rocha.peso > rocha->peso){
@@ -101,45 +101,8 @@ int remover_rocha(Compartimento* compartimento, char categoria[]){ //
 
 
     do{
-        char categoria_da_rocha[30];
-        switch (celula->rocha.categoria)
-        {
-        case 1:
-            strcpy(categoria_da_rocha, "FERROM");
-            break;
-        case 2:
-            strcpy(categoria_da_rocha, "SOLARIS");
-            break;
-        case 3:
-            strcpy(categoria_da_rocha, "AQUAFERRO");
-            break;
-        case 4:
-            strcpy(categoria_da_rocha, "TERROLIS");
-            break;
-        case 5:
-            strcpy(categoria_da_rocha, "TERRASOL");
-            break;
-        case 6:
-            strcpy(categoria_da_rocha, "AQUATERRA");
-            break;
-        case 7:
-            strcpy(categoria_da_rocha, "CALQUER");
-            break;
-        case 8:
-            strcpy(categoria_da_rocha, "SOLARISFER");
-            break;
-        case 9:
-            strcpy(categoria_da_rocha, "TERRARIS");
-            break;
-        case 10:
-            strcpy(categoria_da_rocha, "AQUACALIS");
-            break;
-        
-        default:
-            break;
-        }
 
-        if(strcmp(categoria, categoria_da_rocha) == 0){
+        if(strcmp(categoria, celula->rocha.categoria) == 0){
             anterior->prox = celula->prox;
             compartimento->peso_atual -= celula->rocha.peso;
             free(celula);
