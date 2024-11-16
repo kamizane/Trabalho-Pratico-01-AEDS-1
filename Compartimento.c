@@ -27,7 +27,7 @@ int imprime_compartimento(Compartimento* compartimento){
     Ccelula* celula;
 
     if (compartimento_eh_vazio(compartimento)){
-        printf("compartimento eh vazio!\n");
+        printf("compartimento vazio!\n");
         return 0;
     }
 
@@ -48,7 +48,7 @@ float retorna_peso_atual(Compartimento* compartimento){
 }
 
 int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
-
+    printf("4.tad1");
     Ccelula* celula;
 
     celula = compartimento->primeiro->prox;
@@ -60,6 +60,7 @@ int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
                 compartimento->peso_atual -= celula->rocha.peso;
                 celula->rocha = *rocha;
                 compartimento->peso_atual += celula->rocha.peso;
+                printf("4.tad2");
                 return 1;
             }
         }
