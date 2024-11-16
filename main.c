@@ -238,12 +238,15 @@ float calcula_distancia(float x1, float y1, float x2, float y2){
 
 
 void operacao_I(Lista_sonda_espacial * lista_sondas){
+   
     int cont_sondas  = lista_sondas->QntItens;
     Celula* aux = lista_sondas->pPrimeiro->pProx;
+    
     for (int i=0;i<cont_sondas;i++){
         int cont_rochas = aux->item_sonda.Compartimento.tamanho;
         printf("%s\n", aux->item_sonda.Identificador);
-            imprime_compartimento(&aux->item_sonda.Compartimento);
+
+        imprime_compartimento(&aux->item_sonda.Compartimento);
             //printf("%s %.1f",aux_comp->rocha,aux_comp->rocha.peso);
             //aux_comp = aux_comp->prox;
         aux = aux->pProx;   

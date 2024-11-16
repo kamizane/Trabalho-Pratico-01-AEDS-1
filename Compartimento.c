@@ -25,21 +25,21 @@ int compartimento_eh_vazio(Compartimento* compartimento){
 
 int imprime_compartimento(Compartimento* compartimento){    
     Ccelula* celula;
-
+ 
     if (compartimento_eh_vazio(compartimento)){
         printf("compartimento vazio!\n");
         return 0;
     }
-
+  
     celula = compartimento->primeiro->prox;
     do{
-        
-        printf("%s %f",celula->rocha.categoria, celula->rocha.peso);
+   
+        printf("%d %f\n",celula->rocha.categoria, celula->rocha.peso);
         
         celula = celula->prox;
-
+      
     }while(celula->prox != NULL);
-
+  
     return 1;
 }
 
@@ -48,26 +48,32 @@ float retorna_peso_atual(Compartimento* compartimento){
 }
 
 int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
-    printf("4.tad1");
+  
     Ccelula* celula;
 
     celula = compartimento->primeiro->prox;
-    do{
-        
-        if (celula->rocha.categoria == rocha->categoria){
+    if (!compartimento_eh_vazio(compartimento)){
+        do{
+          
+            
+                if (celula->rocha.categoria == rocha->categoria){  
+                 
 
-            if (celula->rocha.peso <= rocha->peso){
-                compartimento->peso_atual -= celula->rocha.peso;
-                celula->rocha = *rocha;
-                compartimento->peso_atual += celula->rocha.peso;
-                printf("4.tad2");
-                return 1;
-            }
-        }
-        
-        celula = celula->prox;
+                    if (celula->rocha.peso > rocha->peso){
+                    
+                        compartimento->peso_atual -= celula->rocha.peso;
+                        celula->rocha = *rocha;
+                        compartimento->peso_atual += celula->rocha.peso;
+                   
+                        return 1;
+                    }
+                }
 
-    }while(celula != NULL);
+            celula = celula->prox;
+
+        }while(celula->prox != NULL);
+    }
+
     return 0;
 }
 
