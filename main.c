@@ -17,7 +17,9 @@ void operacao_I(Lista_sonda_espacial * lista_sondas);
 int operacao_E(Lista_sonda_espacial * lista_sondas);
 
 int main(int argc,char **argv){
+    printf("comeecou");
     if(strcmp(argv[1],"-f")==0){
+        printf("teste");
         FILE *file = NULL;
         file = fopen(argv[2],"r");
         if (file == NULL){
@@ -90,7 +92,6 @@ int main(int argc,char **argv){
                 break;
             }
         }
-        return 0;
 
     
     }

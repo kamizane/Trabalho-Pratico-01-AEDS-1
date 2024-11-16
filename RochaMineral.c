@@ -1,5 +1,4 @@
 #include "RochaMineral.h"
-#include "ListaMinerais.h"
 #include "Mineral.h"
 #include <stdio.h>
 #include <stdlib.h>
