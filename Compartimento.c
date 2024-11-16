@@ -27,7 +27,7 @@ int imprime_compartimento(Compartimento* compartimento){
     Ccelula* celula;
  
     if (compartimento_eh_vazio(compartimento)){
-        printf("compartimento eh vazio!\n");
+        printf("compartimento vazio!\n");
         return 0;
     }
   

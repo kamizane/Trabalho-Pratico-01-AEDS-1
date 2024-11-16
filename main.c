@@ -18,7 +18,6 @@ int operacao_E(Lista_sonda_espacial * lista_sondas);
 
 int main(int argc,char **argv){
     if(argc > 1 && strcmp( argv[1],"-f")==0){
-        printf("teste");
         FILE *file = NULL;
         file = fopen(argv[2],"r");
         if (file == NULL){
@@ -36,11 +35,12 @@ int main(int argc,char **argv){
         }
 
         for (int i=0; i<numero_sondas; i++){
-            char id ='0'+(i+1);
+            char id[20];
+            sprintf(id, "%d", i);
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
             fscanf(file, "%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
-            inicializa_Sonda_Espacial(&sonda, &id, lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);
+            inicializa_Sonda_Espacial(&sonda, id, lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);
             insere_item_lista_sonda_espacial(&lista_de_sondas_file,&sonda);
             
         }
@@ -108,13 +108,13 @@ int main(int argc,char **argv){
         }
         
         for(int i = 0; i<numero_de_sondas; i++){; //recebe todas as variaveis de acordo com o numero de sondas
-
-            char id ='0'+(i+1);
+            char id[20];
+            sprintf(id, "%d", i);
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
             printf("Digite a latitude, longitude, capacidade, velocidade e combustivel da sonda %c (ex: -2 10 50 12 100): ", id);
             scanf("%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
-            inicializa_Sonda_Espacial(&sonda,&id,lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);//inicializa as sondas com as variaveis recebidas
+            inicializa_Sonda_Espacial(&sonda,id,lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);//inicializa as sondas com as variaveis recebidas
             insere_item_lista_sonda_espacial(&Lista_de_sondas_terminal,&sonda);//adiciona a sonda na lista de sondas
         }
         
