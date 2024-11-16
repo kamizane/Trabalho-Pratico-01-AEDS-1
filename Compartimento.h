@@ -27,7 +27,7 @@ int tamanho_do_compartimento(Compartimento* compartimento);
 
 int compartimento_eh_vazio(Compartimento* compartimento);
 
-int imprime_compartimento(Compartimento* compartimento);
+int imprime_compartimento(Compartimento* compartimento, FILE *saida);
 
 float retorna_peso_atual(Compartimento* compartimento);
 
