@@ -36,7 +36,7 @@ int main(int argc,char **argv){
         }
 
         for (int i=0; i<numero_sondas; i++){
-            char id =(char)i;
+            char id ='0'+(i+1);
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
             fscanf(file, "%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
@@ -109,29 +109,32 @@ int main(int argc,char **argv){
         
         for(int i = 0; i<numero_de_sondas; i++){; //recebe todas as variaveis de acordo com o numero de sondas
 
-            char id =(char)i;
+            char id ='0'+(i+1);
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
-            printf("Digite a latitude, longitude, capacidade, velocidade e combustivel da sonda (ex: -2 10 50 12 100): ");
+            printf("Digite a latitude, longitude, capacidade, velocidade e combustivel da sonda %c (ex: -2 10 50 12 100): ", id);
             scanf("%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
             inicializa_Sonda_Espacial(&sonda,&id,lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);//inicializa as sondas com as variaveis recebidas
             insere_item_lista_sonda_espacial(&Lista_de_sondas_terminal,&sonda);//adiciona a sonda na lista de sondas
         }
         
         int N_instrucao_terminal; //cria variavel N_instrucao (numero de operaçoes que vao ser feitas)
-        printf("Digite o número de operações que as sondas realizarão: ");
+        printf("Digite o numero de operacoes que as sondas realizarao: ");
         scanf("%d", &N_instrucao_terminal); //recebe a N_instrucao (numero de operaçoes que vao ser feitas)
         for(int i = 0; i<N_instrucao_terminal; i++){ //para cada N_instrucao lê a instrucao e realiza ela, chamando a função pronta
             char instrucao_terminal;
-            printf("Insira qual é a opperaçao %d: ", i+1);
+            printf("Insira a operacao %d: ", i+1);
+            getc(stdin);
             scanf("%c", &instrucao_terminal);
             
             switch (instrucao_terminal)
             {
             case 'R': //coleta de uma nova rocha
                 {char linha_terminal[255];
-                printf("Digite a latitude, longitude, peso, categoria e os minerais da rocha (ex: -4.6 137.5 20 Ferrolita Aquavitae): ");
+                printf("Digite a latitude, longitude, peso, categoria e os minerais da rocha (ex: -4.6 137.5 20 Ferrolita Aquavitae): \n");
+                getc(stdin);
                 scanf("%[^\n]", &linha_terminal);
+                printf("1");
                 char * buffer = NULL;
                 const char delim[2] = " ";
                 buffer = strtok(linha_terminal,delim);
@@ -140,23 +143,26 @@ int main(int argc,char **argv){
                 float long_rocha_terminal = atof(buffer);
                 buffer = strtok(NULL,delim);
                 float peso_rocha_terminal = atof (buffer);
+                printf("2");
                 int counter = 0;
                 char aux[20];
                 Mineral minerais_terminal[3];
                 ListaMinerais lista_minerais_terminal;
                 fListaMineraisVazia(&lista_minerais_terminal);
+                printf("3");
                 while(buffer != NULL){
                     buffer = strtok(NULL,delim);
+                    if (buffer == NULL) break;
                     strcpy(aux,buffer);
                     atribui_mineral(&minerais_terminal[i],aux);
                     TItem x;
                     x.Chave = minerais_terminal[i];
                     insereMineralLista(&lista_minerais_terminal, x);
-
-
                     i++;
                 }
+                printf("4");
                 operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
+                printf("5");
                 break;}
 
             case 'I':
@@ -180,38 +186,48 @@ int main(int argc,char **argv){
 }
 
 void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long_rocha, float peso_rocha, ListaMinerais* lista_minerais){
+    printf("4.1\n");
     LocalRochaMineral local;
     local.latitude = lat_rocha;
     local.longitude = long_rocha;
     RochaMineral rocha_file;
-
+    printf("4.2\n");
     static int contId = 1;
 
     inicializaRochaMineral(&rocha_file, contId, peso_rocha , lista_minerais,local,"00:00:00");
+    printf("4.3\n");
     int cont = lista_sondas->QntItens;
     float menor_d;
     float distancia;
     char id_sonda_mais_perto[20];
     Celula* sonda_mais_perto;
     Celula* aux = lista_sondas->pPrimeiro->pProx;
+    printf("4.4\n");
     for (int i=0;i<cont;i++){
         distancia = calcula_distancia(aux->item_sonda.Localizacao_sonda.Longitude,aux->item_sonda.Localizacao_sonda.Latitude, long_rocha, lat_rocha);
+        printf("4.5\n");
         //é ruim passar a latitude assim? deveria chamar uma função get?
         if (distancia < menor_d){
+            printf("4.6\n");
             if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file)){
+                printf("4.7\n");
                 menor_d = distancia;
                 sonda_mais_perto = aux;
             }
             else if ((aux->item_sonda.Compartimento.peso_atual + rocha_file.peso) <= aux->item_sonda.Compartimento.peso_maximo ){
+                printf("4.8\n");
                 menor_d = distancia;
                 sonda_mais_perto = aux;
             }
             strcpy(id_sonda_mais_perto,aux->item_sonda.Identificador);
         }
         aux = aux->pProx;
+        printf("4.9\n");
     }
     move_Sonda_Espacial(&sonda_mais_perto->item_sonda,lat_rocha,long_rocha);
+    printf("4.10\n");
     inserir_rocha(&sonda_mais_perto->item_sonda.Compartimento, &rocha_file);
+    printf("4.11\n");
 
     contId++;
 }
