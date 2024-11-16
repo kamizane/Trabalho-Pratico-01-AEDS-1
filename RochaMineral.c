@@ -24,7 +24,7 @@ int getId(RochaMineral* rocha){
 float getPeso(RochaMineral* rocha){
     return rocha->peso;
 }
-CategoriaRochaMineral getCategoria(RochaMineral* rocha){
+char *getCategoria(RochaMineral* rocha){
     return rocha->categoria;
 }
 MLista *getListaMinerais(RochaMineral* rocha){
@@ -50,8 +50,8 @@ void setPeso(RochaMineral* rocha, float peso){
 void setListaMinerais(RochaMineral* rocha, MLista* lista){
     rocha->lista = lista;
 }
-void setCategoria(RochaMineral* rocha, CategoriaRochaMineral categoria){
-    rocha->categoria = categoria;
+void setCategoria(RochaMineral* rocha, char *categoria){
+    strcpy(rocha->categoria, categoria);
 }
 void setLatitude(RochaMineral* rocha, float latitude){
     rocha->local.latitude = latitude;
@@ -88,33 +88,33 @@ void escolheCategoria(RochaMineral *rocha){
 
     //definindo a categoria da rocha de acordo com os minerais que estão presentes na lista
     if(tAquavitae && tCalaris && tFerrolita){
-        setCategoria(rocha, AQUACALIS);
+        setCategoria(rocha, "Aquacalis");
 
     }else if(tTerranita && tFerrolita){
-        setCategoria(rocha, TERRALIS);
+        setCategoria(rocha, "Terralis");
 
     }else if(tSolarium && tFerrolita){
-        setCategoria(rocha, SOLARISFER);
+        setCategoria(rocha, "Solarisfer");
 
     }else if(tCalaris && tAquavitae){
-        setCategoria(rocha, CALQUER);
+        setCategoria(rocha, "Calquer");
 
     }else if(tAquavitae && tTerranita){
-        setCategoria(rocha, AQUATERRA);
+        setCategoria(rocha, "Aquaterra");
 
     }else if(tTerranita && tSolarium){
-        setCategoria(rocha, TERRASOL);
+        setCategoria(rocha, "Terrasol");
 
     }else if(tTerranita && tCalaris){
-        setCategoria(rocha, TERROLIS);
+        setCategoria(rocha, "Terrolis");
 
     }else if (tFerrolita && tAquavitae){
-        setCategoria(rocha, AQUAFERRO);
+        setCategoria(rocha, "Aquaferro");
 
     }else if (tSolarium){
-        setCategoria(rocha, SOLARIS);
+        setCategoria(rocha, "Solaris");
 
     }else if (tFerrolita){
-        setCategoria(rocha, FERROM);
+        setCategoria(rocha, "Ferrom");
     }
 }
