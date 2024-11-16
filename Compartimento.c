@@ -66,7 +66,7 @@ int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
         
         celula = celula->prox;
 
-    }while(celula->prox != NULL);
+    }while(celula != NULL);
     return 0;
 }
 
@@ -146,7 +146,7 @@ int remover_rocha(Compartimento* compartimento, char categoria[]){ //
         anterior = celula;
         celula = celula->prox;
 
-    }while(celula->prox != NULL);
+    }while(celula != NULL);
 
     return 0;
 }

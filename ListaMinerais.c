@@ -42,7 +42,7 @@ int retiraMineralLista(ListaMinerais* pLista, char *nome){
     }else{
 
         //passando por todos os elementos da lista procurando o nome desejado
-        for (int i = pLista->Primeiro; i <= pLista->Ultimo; i++){
+        for (int i = pLista->Primeiro; i < pLista->Ultimo; i++){
             //comparando o nome desejado com o nome do mineral da posição i da lista de minerais
             TChave m = pLista->minerais[i].Chave;
             if(strcmp(m.nome, nome) == 0){
