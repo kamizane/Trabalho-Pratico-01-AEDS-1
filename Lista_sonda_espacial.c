@@ -14,7 +14,7 @@ int verifica_lista_vazia(Lista_sonda_espacial * lista_sonda){
 }
 void insere_item_lista_sonda_espacial(Lista_sonda_espacial * lista_sonda, Sonda_espacial* pItem){
     lista_sonda->pUltimo->pProx = (Celula*) malloc (sizeof(Celula));
-    lista_sonda->pUltimo = lista_sonda->pPrimeiro->pProx;
+    lista_sonda->pUltimo = lista_sonda->pUltimo->pProx;
     lista_sonda->pUltimo->item_sonda = *pItem;
     lista_sonda->QntItens ++;
     lista_sonda->pUltimo->pProx = NULL;
@@ -65,7 +65,7 @@ int imprime_lista_sonda_espacial(Lista_sonda_espacial* lista_sonda){
     }
     else {
         Celula* pAux = lista_sonda->pPrimeiro->pProx;
-        while(pAux->pProx!= NULL){
+        while(pAux!= NULL){
             printf("%s, ", pAux->item_sonda.Identificador);
             pAux = pAux->pProx;
         }
