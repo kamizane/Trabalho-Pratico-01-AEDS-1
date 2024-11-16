@@ -1,4 +1,3 @@
-#include "./Mineral.h"
 #include "ListaMinerais.h"
 #include <stdio.h>
 #include <string.h>
