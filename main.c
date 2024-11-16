@@ -17,8 +17,7 @@ void operacao_I(Lista_sonda_espacial * lista_sondas);
 int operacao_E(Lista_sonda_espacial * lista_sondas);
 
 int main(int argc,char **argv){
-    printf("comeecou");
-    if(strcmp(argv[1],"-f")==0){
+    if(argc > 1 && strcmp( argv[1],"-f")==0){
         printf("teste");
         FILE *file = NULL;
         file = fopen(argv[2],"r");
@@ -96,12 +95,12 @@ int main(int argc,char **argv){
     
     }
     else{
-        printf("Iniciando AEDS");
+        printf("Iniciando missao espacial\n");
         int numero_de_sondas; //separa o numero de sondas 
         Lista_sonda_espacial Lista_de_sondas_terminal; //cria lista de sondas
         
         inicializa_lista_sonda_espacial(&Lista_de_sondas_terminal);//inicializa lista de sondas
-        printf("Digite o número de sondas enviada pela AEDS: ");
+        printf("Digite o numero de sondas enviada pela AEDS: ");
         scanf("%d", &numero_de_sondas); //recebe o numero de sondas de entrada
         if(numero_de_sondas == 0){
             printf("Nenhuma sonda foi enviada pela AEDS\n");
@@ -113,7 +112,7 @@ int main(int argc,char **argv){
             char id =(char)i;
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
-            printf("Digite a latitude, longitude, capacidade, velocidade e combustível da sonda (ex: -2 10 50 12 100): ");
+            printf("Digite a latitude, longitude, capacidade, velocidade e combustivel da sonda (ex: -2 10 50 12 100): ");
             scanf("%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
             inicializa_Sonda_Espacial(&sonda,&id,lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);//inicializa as sondas com as variaveis recebidas
             insere_item_lista_sonda_espacial(&Lista_de_sondas_terminal,&sonda);//adiciona a sonda na lista de sondas
