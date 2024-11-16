@@ -8,6 +8,7 @@
 #include "Mineral.h"
 #include "RochaMineral.h"
 #include "Compartimento.h"
+#include "ListaMinerais.h"
 
 
 void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long_rocha, float peso_rocha, ListaMinerais* lista_minerais);//falta ver se ja tenho o tipo categoria naquela sonda e se ela tem espaço.
@@ -89,37 +90,47 @@ int main(int argc,char **argv){
                 break;
             }
         }
-        
+        return 0;
 
     
     }
     else{
+        printf("Iniciando AEDS");
         int numero_de_sondas; //separa o numero de sondas 
         Lista_sonda_espacial Lista_de_sondas_terminal; //cria lista de sondas
         
         inicializa_lista_sonda_espacial(&Lista_de_sondas_terminal);//inicializa lista de sondas
+        printf("Digite o número de sondas enviada pela AEDS: ");
         scanf("%d", &numero_de_sondas); //recebe o numero de sondas de entrada
+        if(numero_de_sondas == 0){
+            printf("Nenhuma sonda foi enviada pela AEDS\n");
+            return 0;
+        }
         
         for(int i = 0; i<numero_de_sondas; i++){; //recebe todas as variaveis de acordo com o numero de sondas
 
             char id =(char)i;
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
+            printf("Digite a latitude, longitude, capacidade, velocidade e combustível da sonda (ex: -2 10 50 12 100): ");
             scanf("%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
             inicializa_Sonda_Espacial(&sonda,&id,lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);//inicializa as sondas com as variaveis recebidas
             insere_item_lista_sonda_espacial(&Lista_de_sondas_terminal,&sonda);//adiciona a sonda na lista de sondas
         }
         
         int N_instrucao_terminal; //cria variavel N_instrucao (numero de operaçoes que vao ser feitas)
+        printf("Digite o número de operações que as sondas realizarão: ");
         scanf("%d", &N_instrucao_terminal); //recebe a N_instrucao (numero de operaçoes que vao ser feitas)
         for(int i = 0; i<N_instrucao_terminal; i++){ //para cada N_instrucao lê a instrucao e realiza ela, chamando a função pronta
             char instrucao_terminal;
+            printf("Insira qual é a opperaçao %d: ", i+1);
             scanf("%c", &instrucao_terminal);
             
             switch (instrucao_terminal)
             {
             case 'R': //coleta de uma nova rocha
                 {char linha_terminal[255];
+                printf("Digite a latitude, longitude, peso, categoria e os minerais da rocha (ex: -4.6 137.5 20 Ferrolita Aquavitae): ");
                 scanf("%[^\n]", &linha_terminal);
                 char * buffer = NULL;
                 const char delim[2] = " ";
