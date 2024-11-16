@@ -13,10 +13,17 @@
 
 void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long_rocha, float peso_rocha, ListaMinerais* lista_minerais);//falta ver se ja tenho o tipo categoria naquela sonda e se ela tem espaço.
 float calcula_distancia(float x1, float y1, float x2, float y2);
-void operacao_I(Lista_sonda_espacial * lista_sondas);
+void operacao_I(Lista_sonda_espacial * lista_sondas, FILE *saida);
 int operacao_E(Lista_sonda_espacial * lista_sondas);
 
 int main(int argc,char **argv){
+    FILE *saida = NULL;
+    saida = fopen("saida.txt", "w");
+    if(saida == NULL){
+        printf("arquivo de saída inválido");
+    }
+
+
     if(argc > 1 && strcmp( argv[1],"-f")==0){
         printf("teste");
         FILE *file = NULL;
@@ -82,7 +89,7 @@ int main(int argc,char **argv){
 
                 break;
             case 'I':
-                operacao_I(&lista_de_sondas_file);
+                operacao_I(&lista_de_sondas_file, saida);
                 break;
             case 'E':
 
@@ -113,7 +120,7 @@ int main(int argc,char **argv){
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
             printf("Digite a latitude, longitude, capacidade, velocidade e combustivel da sonda %c (ex: -2 10 50 12 100): ", id);
-            scanf("%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
+            scanf("%f %f %f %f %f", &lat_i, &long_i, &capacidade_i, &velocidade_i, &combustivel_i);
             inicializa_Sonda_Espacial(&sonda,&id,lat_i,long_i,capacidade_i,velocidade_i,combustivel_i);//inicializa as sondas com as variaveis recebidas
             insere_item_lista_sonda_espacial(&Lista_de_sondas_terminal,&sonda);//adiciona a sonda na lista de sondas
         }
@@ -135,6 +142,7 @@ int main(int argc,char **argv){
                 getc(stdin);
                 scanf("%[^\n]", &linha_terminal);
                 printf("1");
+                //fprintf(saida, "1");
                 char * buffer = NULL;
                 const char delim[2] = " ";
                 buffer = strtok(linha_terminal,delim);
@@ -144,12 +152,14 @@ int main(int argc,char **argv){
                 buffer = strtok(NULL,delim);
                 float peso_rocha_terminal = atof (buffer);
                 printf("2");
+                //fprintf(saida, "2");
                 int counter = 0;
                 char aux[20];
                 Mineral minerais_terminal[3];
                 ListaMinerais lista_minerais_terminal;
                 fListaMineraisVazia(&lista_minerais_terminal);
                 printf("3");
+                //fprintf(saida, "3");
                 while(buffer != NULL){
                     buffer = strtok(NULL,delim);
                     if (buffer == NULL) break;
@@ -161,13 +171,16 @@ int main(int argc,char **argv){
                     i++;
                 }
                 printf("4");
+                //fprintf(saida, "4");
+
                 operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
                 printf("5");
+                //fprintf(saida, "5");
                 break;}
 
             case 'I':
 
-                operacao_I(&Lista_de_sondas_terminal);
+                operacao_I(&Lista_de_sondas_terminal, saida);
                 
                 break;
 
@@ -182,6 +195,7 @@ int main(int argc,char **argv){
         }
         
     }
+    fclose(saida);
     return 0;
 }
 
@@ -237,13 +251,14 @@ float calcula_distancia(float x1, float y1, float x2, float y2){
 }
 
 
-void operacao_I(Lista_sonda_espacial * lista_sondas){
+void operacao_I(Lista_sonda_espacial * lista_sondas, FILE *saida){
     int cont_sondas  = lista_sondas->QntItens;
     Celula* aux = lista_sondas->pPrimeiro->pProx;
     for (int i=0;i<cont_sondas;i++){
         int cont_rochas = aux->item_sonda.Compartimento.tamanho;
         printf("%s\n", aux->item_sonda.Identificador);
-            imprime_compartimento(&aux->item_sonda.Compartimento);
+        
+            imprime_compartimento(&aux->item_sonda.Compartimento, saida);
             //printf("%s %.1f",aux_comp->rocha,aux_comp->rocha.peso);
             //aux_comp = aux_comp->prox;
         aux = aux->pProx;   
