@@ -28,7 +28,7 @@ int imprime_compartimento(Compartimento* compartimento, FILE *saida){
 
     if (compartimento_eh_vazio(compartimento)){
         printf("compartimento eh vazio!\n");
-        fprintf(saida, "compartimento vazio\n");
+        fprintf(saida, "compartimento vazio!\n");
         return 0;
     }
 
