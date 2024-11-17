@@ -13,17 +13,25 @@
 
 void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long_rocha, float peso_rocha, ListaMinerais* lista_minerais);//falta ver se ja tenho o tipo categoria naquela sonda e se ela tem espaço.
 float calcula_distancia(float x1, float y1, float x2, float y2);
-void operacao_I(Lista_sonda_espacial * lista_sondas);
+void operacao_I(Lista_sonda_espacial * lista_sondas, FILE *saida);
 int operacao_E(Lista_sonda_espacial * lista_sondas);
 
 int main(int argc,char **argv){
+
+    FILE *saida = NULL;
+    saida = fopen("saida.txt", "w");
+    if(saida == NULL){
+        printf("arquivo de saída inválido");
+    }
+
     if(argc > 1 && strcmp( argv[1],"-f")==0){
         FILE *file = NULL;
         file = fopen(argv[2],"r");
         if (file == NULL){
-            printf("Arquivo não existe");
+            printf("Arquivo de entrada não existe");
             return 0;
         }
+
         Lista_sonda_espacial lista_de_sondas_file;
         inicializa_lista_sonda_espacial(&lista_de_sondas_file);
         int numero_sondas;
@@ -82,7 +90,7 @@ int main(int argc,char **argv){
 
                 break;
             case 'I':
-                operacao_I(&lista_de_sondas_file);
+                operacao_I(&lista_de_sondas_file, saida);
                 break;
             case 'E':
 
@@ -170,7 +178,7 @@ int main(int argc,char **argv){
 
             case 'I':
 
-                operacao_I(&Lista_de_sondas_terminal);
+                operacao_I(&Lista_de_sondas_terminal, saida);
                 
                 break;
 
@@ -185,6 +193,7 @@ int main(int argc,char **argv){
         }
         
     }
+    fclose(saida);
     return 0;
 }
 
@@ -238,7 +247,7 @@ float calcula_distancia(float x1, float y1, float x2, float y2){
 }
 
 
-void operacao_I(Lista_sonda_espacial * lista_sondas){
+void operacao_I(Lista_sonda_espacial * lista_sondas, FILE *saida){
    
     int cont_sondas  = lista_sondas->QntItens;
     Celula* aux = lista_sondas->pPrimeiro->pProx;
@@ -247,7 +256,7 @@ void operacao_I(Lista_sonda_espacial * lista_sondas){
         int cont_rochas = aux->item_sonda.Compartimento.tamanho;
         printf("%s\n", aux->item_sonda.Identificador);
 
-        imprime_compartimento(&aux->item_sonda.Compartimento);
+        imprime_compartimento(&aux->item_sonda.Compartimento, saida);
             //printf("%s %.1f",aux_comp->rocha,aux_comp->rocha.peso);
             //aux_comp = aux_comp->prox;
         aux = aux->pProx;   
