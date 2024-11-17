@@ -6,10 +6,11 @@
 
 //função para inicializar uma rocha
 void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, MLista *lista, LocalRochaMineral local, char dataColeta[20]){
-
+    imprimeListaMinerais(lista);    
     setId(rocha, id);
     setPeso(rocha, peso);
     setListaMinerais(rocha, lista);
+    imprimeListaMinerais(lista);  
     escolheCategoria(rocha);
     setLatitude(rocha, local.latitude);
     setLongitude(rocha, local.longitude);
@@ -68,10 +69,11 @@ void escolheCategoria(RochaMineral *rocha){
     
     //definindo variáveis booleanas para verificar se existe cada mineral na lista
     int tFerrolita = 0, tSolarium = 0, tAquavitae = 0, tTerranita = 0, tCalaris = 0;
-
+    imprimeListaMinerais(rocha->lista);  
     //passando por todas as posições da lista de minerais
     for(int i = 0; i < 3; i++){
         TChave m = rocha->lista->minerais[i].Chave;
+        printf("%s\n", m.nome);
         //verificando, a partir do nome do mineral, qual mineral está na posição i
         if(strcmp(m.nome, "Ferrolita") == 0){
             tFerrolita = 1;
@@ -85,35 +87,35 @@ void escolheCategoria(RochaMineral *rocha){
             tCalaris = 1;
         } 
     }
-
+    
     //definindo a categoria da rocha de acordo com os minerais que estão presentes na lista
     if(tAquavitae && tCalaris && tFerrolita){
-        setCategoria(rocha, AQUACALIS); 
+        setCategoria(rocha, "AQUACALIS"); 
     }else if(tTerranita && tFerrolita){
-        setCategoria(rocha, TERRALIS);
+        setCategoria(rocha, "TERRALIS");
 
     }else if(tSolarium && tFerrolita){
-        setCategoria(rocha, SOLARISFER);
+        setCategoria(rocha, "SOLARISFER");
 
     }else if(tCalaris && tAquavitae){
-        setCategoria(rocha, CALQUER));
+        setCategoria(rocha, "CALQUER");
 
     }else if(tAquavitae && tTerranita){
-        setCategoria(rocha, AQUATERRA);
+        setCategoria(rocha, "AQUATERRA");
 
     }else if(tTerranita && tSolarium){
-        setCategoria(rocha, TERRASOL);
+        setCategoria(rocha, "TERRASOL");
 
     }else if(tTerranita && tCalaris){
-        setCategoria(rocha, TERROLIS);
+        setCategoria(rocha, "TERROLIS");
 
     }else if (tFerrolita && tAquavitae){
-        setCategoria(rocha,AQUAFERRO);
+        setCategoria(rocha,"AQUAFERRO");
 
     }else if (tSolarium){
-        setCategoria(rocha, SOLARIS);
+        setCategoria(rocha, "SOLARIS");
 
     }else if (tFerrolita){
-        setCategoria(rocha, FERROM);
+        setCategoria(rocha, "FERROM");
     }
 }

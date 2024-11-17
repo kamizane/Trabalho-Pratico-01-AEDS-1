@@ -148,7 +148,7 @@ int main(int argc,char **argv){
                 printf("2");
                 int counter = 0;
                 char aux[20];
-                Mineral minerais_terminal;
+                Mineral minerais_terminal[2];
                 ListaMinerais lista_minerais_terminal;
                 fListaMineraisVazia(&lista_minerais_terminal);
                 printf("3\n");
@@ -156,15 +156,17 @@ int main(int argc,char **argv){
                 while((buffer = strtok(NULL, delim)) != NULL && m < 2){
                     printf("ta, entrou\n");
                     strcpy(aux,buffer);
-                    atribui_mineral(&minerais_terminal,aux);
-                    printf("mineral feito %s\n",minerais_terminal.nome);
+                    atribui_mineral(&minerais_terminal[m],aux);
+                    printf("mineral feito %s\n",minerais_terminal[m].nome);
                     TItem x;
-                    strcpy(x.Chave.nome, minerais_terminal.nome);
+                    strcpy(x.Chave.nome, minerais_terminal[m].nome);
                     insereMineralLista(&lista_minerais_terminal, x);
                     printf("Inseriu na lista,nome %s\n", lista_minerais_terminal.minerais->Chave.nome);
+                    
 
                     m++;
                 }
+                imprimeListaMinerais(&lista_minerais_terminal);
                 printf("4");
                 operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
                 printf("5");
@@ -181,7 +183,7 @@ int main(int argc,char **argv){
                 break;
 
             default:
-                printf("operacao invalida");
+                printf("operacao invalida\n");
                 break;
             }
         }
@@ -199,6 +201,7 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
     RochaMineral rocha_file;
     printf("4.2\n");
     static int contId = 1;
+    imprimeListaMinerais(lista_minerais);
     inicializaRochaMineral(&rocha_file, contId, peso_rocha , lista_minerais,local,"00:00:00");
     printf("conid = %d\n", contId);
     printf("4.3\n");
@@ -214,12 +217,14 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
         //é ruim passar a latitude assim? deveria chamar uma função get?
         if (distancia < menor_d){
             printf("4.6\n");
-            if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file)){
+            if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file) == 1){
                 printf("4.7\n");
                 menor_d = distancia;
                 sonda_mais_perto = aux;
-            }
-            else if ((aux->item_sonda.Compartimento.peso_atual + rocha_file.peso) <= aux->item_sonda.Compartimento.peso_maximo ){
+                return;
+            }else if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file) == 2){
+                return;
+            }else if ((aux->item_sonda.Compartimento.peso_atual + rocha_file.peso) <= aux->item_sonda.Compartimento.peso_maximo ){
                 printf("4.8\n");
                 menor_d = distancia;
                 sonda_mais_perto = aux;

@@ -3,6 +3,7 @@
 #include <string.h>
 #include "Compartimento.h"
 
+
 const char * nomesRochas[]={
     " ",//vazio pois o enum CategoriaRochaMineral começa do 1
     "FERROM",
@@ -53,7 +54,7 @@ int imprime_compartimento(Compartimento* compartimento){
         
         celula = celula->prox;
       
-    }while(celula->prox != NULL);
+    }while(celula != NULL);
   
     return 1;
 }
@@ -63,32 +64,37 @@ float retorna_peso_atual(Compartimento* compartimento){
 }
 
 int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
-  
+    printf("4.6.1\n");
     Ccelula* celula;
 
     celula = compartimento->primeiro->prox;
     if (!compartimento_eh_vazio(compartimento)){
+        printf("4.6.2\n");
         do{
-          
+            printf("4.6.3\n");
             
+            printf("%s\n",celula->rocha.categoria);
+            printf("%s\n", rocha->categoria);
+
                 if (strcmp(celula->rocha.categoria,rocha->categoria) == 0){  
-                 
+                    printf("4.6.4\n");
 
                     if (celula->rocha.peso > rocha->peso){
-                    
+                        printf("4.6.5\n");
                         compartimento->peso_atual -= celula->rocha.peso;
                         celula->rocha = *rocha;
                         compartimento->peso_atual += celula->rocha.peso;
-                   
+                        printf("4.6.6\n");
                         return 1;
                     }
+                    return 2;
                 }
-
+            printf("4.6.8\n");
             celula = celula->prox;
-
-        }while(celula->prox != NULL);
+        printf("4.6.9\n");
+        }while(celula != NULL);
     }
-
+    printf("4.6.10\n");
     return 0;
 }
 

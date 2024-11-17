@@ -3,20 +3,33 @@
 #include "Mineral.h"
 
 void atribui_mineral(Mineral * mineral, char nome_mineral[]){
+    char cor[20];
+    float dureza;
+    float reatividade;
 
     if (strcmp(nome_mineral, "Ferrolita")==0){
-        inicializa_mineral(mineral, "Ferrolita", "cinza" , 0.5, 0.7);
+        strcpy(cor,"cinza");
+        dureza =0.5;
+        reatividade =0.7;
     } else if (strcmp(nome_mineral , "Solarium")==0){
-        inicializa_mineral(mineral, "Solarium", "amarelo" , 0.9, 0.2);
+        strcpy(cor,"amarelo");
+        dureza = 0.9;
+        reatividade =0.2;
     }else if (strcmp(nome_mineral , "Aquavitae")==0){
-        inicializa_mineral(mineral, "Aquavitae" , "azul" , 0.5 , 0.8);
+        strcpy(cor,"azul");
+        dureza =0.5;
+        reatividade =0.8;
     } else if (strcmp(nome_mineral , "Terranita")==0){
-        inicializa_mineral(mineral, "Terranita", "marrom" , 0.7, 0.6);
+        strcpy(cor,"marrom");
+        dureza =0.7;
+        reatividade =0.6;
     } else if (strcmp(nome_mineral ,"Calaris")==0){
-        inicializa_mineral(mineral, "Calaris", "vermelho" , 0.6, 0.5);
+        strcpy(cor,"vermelho");
+        dureza =0.6;
+        reatividade =0.5;
     }
 
-
+    inicializa_mineral(mineral,nome_mineral, cor, dureza,reatividade);
 }
 
 void cria_catalogo_minerais(Mineral minerais[5]){
