@@ -3,6 +3,7 @@
 
 #include "RochaMineral.h"
 
+
 typedef struct celula{
 
     RochaMineral rocha;

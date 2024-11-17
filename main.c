@@ -75,16 +75,16 @@ int main(int argc,char **argv){
                 float peso_rocha = atof (buffer);
                 Mineral minerais[2];
                 char nome_mineral[15];
-                int i = 0;
+                int m = 0;
                 while(buffer != NULL){
                     buffer = strtok(NULL,delim);
                     strcpy(nome_mineral,buffer);
-                    atribui_mineral(&minerais[i],nome_mineral);
+                    atribui_mineral(&minerais[m],nome_mineral);
                     TItem a; 
-                    a.Chave = minerais[i];
+                    a.Chave = minerais[m];
                     insereMineralLista(&lista_minerais_file, a);
                     //strcpy(minerais[i].nome,buffer);//corrigir
-                    i++;
+                    m++;
                 }
                 operacao_R(&lista_de_sondas_file,lat_rocha, long_rocha, peso_rocha, &lista_minerais_file);
 
@@ -117,7 +117,7 @@ int main(int argc,char **argv){
         
         for(int i = 0; i<numero_de_sondas; i++){; //recebe todas as variaveis de acordo com o numero de sondas
             char id[20];
-            sprintf(id, "%d", i);
+            sprintf(id, "%d", i+1);
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
             printf("Digite a latitude, longitude, capacidade, velocidade e combustivel da sonda %c (ex: -2 10 50 12 100): ", id);
@@ -140,7 +140,7 @@ int main(int argc,char **argv){
             case 'R': //coleta de uma nova rocha
                 {char linha_terminal[255];
                 printf("Digite a latitude, longitude, peso, categoria e os minerais da rocha (ex: -4.6 137.5 20 Ferrolita Aquavitae): \n");
-                getc(stdin);
+                getchar();
                 scanf("%[^\n]", &linha_terminal);
                 printf("1");
                 char * buffer = NULL;
@@ -154,19 +154,22 @@ int main(int argc,char **argv){
                 printf("2");
                 int counter = 0;
                 char aux[20];
-                Mineral minerais_terminal[3];
+                Mineral minerais_terminal;
                 ListaMinerais lista_minerais_terminal;
                 fListaMineraisVazia(&lista_minerais_terminal);
-                printf("3");
-                while(buffer != NULL){
-                    buffer = strtok(NULL,delim);
-                    if (buffer == NULL) break;
+                printf("3\n");
+                int m = 0;
+                while((buffer = strtok(NULL, delim)) != NULL && m < 2){
+                    printf("ta, entrou\n");
                     strcpy(aux,buffer);
-                    atribui_mineral(&minerais_terminal[i],aux);
+                    atribui_mineral(&minerais_terminal,aux);
+                    printf("mineral feito %s\n",minerais_terminal.nome);
                     TItem x;
-                    x.Chave = minerais_terminal[i];
+                    strcpy(x.Chave.nome, minerais_terminal.nome);
                     insereMineralLista(&lista_minerais_terminal, x);
-                    i++;
+                    printf("Inseriu na lista,nome %s\n", lista_minerais_terminal.minerais->Chave.nome);
+
+                    m++;
                 }
                 printf("4");
                 operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
@@ -202,13 +205,12 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
     RochaMineral rocha_file;
     printf("4.2\n");
     static int contId = 1;
-
     inicializaRochaMineral(&rocha_file, contId, peso_rocha , lista_minerais,local,"00:00:00");
+    printf("conid = %d\n", contId);
     printf("4.3\n");
     int cont = lista_sondas->QntItens;
     float menor_d;
     float distancia;
-    char id_sonda_mais_perto[20];
     Celula* sonda_mais_perto;
     Celula* aux = lista_sondas->pPrimeiro->pProx;
     printf("4.4\n");
@@ -228,7 +230,6 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
                 menor_d = distancia;
                 sonda_mais_perto = aux;
             }
-            strcpy(id_sonda_mais_perto,aux->item_sonda.Identificador);
         }
         aux = aux->pProx;
         printf("4.9\n");
@@ -267,10 +268,25 @@ int operacao_E(Lista_sonda_espacial * lista_sondas){
         return 0;
     }
     int cont_sondas = lista_sondas->QntItens;
+    float media = 0;
     Celula*aux = lista_sondas->pPrimeiro->pProx;
     for (int i=0; i<cont_sondas; i++){
         move_Sonda_Espacial(&aux->item_sonda, 0 , 0);
+        media += aux->item_sonda.Compartimento.peso_atual;
         aux = aux->pProx;
     }
+    Compartimento lista_temp;
+    faz_compartimento_vazio(&lista_temp,media);
+    media = media / cont_sondas;
+    for (int i=0; i<cont_sondas; i++){
+        if (aux->item_sonda.Compartimento.peso_atual > media){
+            
+        }
+        aux = aux->pProx;
+    }
+
+
+
+
     return 1;
 }
