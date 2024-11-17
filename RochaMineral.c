@@ -6,11 +6,10 @@
 
 //função para inicializar uma rocha
 void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, MLista *lista, LocalRochaMineral local, char dataColeta[20]){
-    imprimeListaMinerais(lista);    
+       
     setId(rocha, id);
     setPeso(rocha, peso);
-    setListaMinerais(rocha, lista);
-    imprimeListaMinerais(lista);  
+    setListaMinerais(rocha, lista);  
     escolheCategoria(rocha);
     setLatitude(rocha, local.latitude);
     setLongitude(rocha, local.longitude);
@@ -69,11 +68,11 @@ void escolheCategoria(RochaMineral *rocha){
     
     //definindo variáveis booleanas para verificar se existe cada mineral na lista
     int tFerrolita = 0, tSolarium = 0, tAquavitae = 0, tTerranita = 0, tCalaris = 0;
-    imprimeListaMinerais(rocha->lista);  
+    //imprimeListaMinerais(rocha->lista);  
     //passando por todas as posições da lista de minerais
-    for(int i = 0; i < 3; i++){
+    for(int i = rocha->lista->Primeiro; i < rocha->lista->Ultimo; i++){
         TChave m = rocha->lista->minerais[i].Chave;
-        printf("%s\n", m.nome);
+        //printf("%s\n", m.nome);
         //verificando, a partir do nome do mineral, qual mineral está na posição i
         if(strcmp(m.nome, "Ferrolita") == 0){
             tFerrolita = 1;

@@ -19,6 +19,7 @@ void atribui_mineral(Mineral * mineral, char nome_mineral[]){
         strcpy(cor,"azul");
         dureza =0.5;
         reatividade =0.8;
+        printf("aaaaa");
     } else if (strcmp(nome_mineral , "Terranita")==0){
         strcpy(cor,"marrom");
         dureza =0.7;
