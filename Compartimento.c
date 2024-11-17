@@ -3,6 +3,19 @@
 #include <string.h>
 #include "Compartimento.h"
 
+const char * nomesRochas[]={
+    " ",//vazio pois o enum CategoriaRochaMineral começa do 1
+    "FERROM",
+    "SOLARIS",
+    "AQUAFERRO",
+    "TERROLIS",
+    "TERRASOL",
+    "AQUATERRA",
+    "CALQUER",
+    "SOLARISFER",
+    "TERRALIS",
+    "AQUACALIS"
+};
 
 void faz_compartimento_vazio(Compartimento* compartimento, float peso_max){
 
@@ -34,7 +47,7 @@ int imprime_compartimento(Compartimento* compartimento){
     celula = compartimento->primeiro->prox;
     do{
    
-        printf("%d %f\n",celula->rocha.categoria, celula->rocha.peso);
+        printf("%s %f\n",nomesRochas[celula->rocha.categoria], celula->rocha.peso);
         
         celula = celula->prox;
       
@@ -76,6 +89,8 @@ int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
 
     return 0;
 }
+
+
 
 int inserir_rocha(Compartimento* compartimento, RochaMineral* rocha){
     if((compartimento->peso_atual + rocha->peso) <= compartimento->peso_maximo){

@@ -4,15 +4,15 @@
 
 void atribui_mineral(Mineral * mineral, char nome_mineral[]){
 
-    if (nome_mineral == "Ferrolita"){
+    if (strcmp(nome_mineral, "Ferrolita")==0){
         inicializa_mineral(mineral, "Ferrolita", "cinza" , 0.5, 0.7);
-    } else if (nome_mineral == "Solarium"){
+    } else if (strcmp(nome_mineral , "Solarium")==0){
         inicializa_mineral(mineral, "Solarium", "amarelo" , 0.9, 0.2);
-    }else if (nome_mineral == "Aquavitae"){
+    }else if (strcmp(nome_mineral , "Aquavitae")==0){
         inicializa_mineral(mineral, "Aquavitae" , "azul" , 0.5 , 0.8);
-    } else if (nome_mineral == "Terranita"){
+    } else if (strcmp(nome_mineral , "Terranita")==0){
         inicializa_mineral(mineral, "Terranita", "marrom" , 0.7, 0.6);
-    } else if (nome_mineral == "Calaris"){
+    } else if (strcmp(nome_mineral ,"Calaris")==0){
         inicializa_mineral(mineral, "Calaris", "vermelho" , 0.6, 0.5);
     }
 

@@ -21,7 +21,7 @@ int insereMineralLista(ListaMinerais* pLista, TItem x){
 
     //incrementando o Apontador Ultimo, já que temos mais um elemento na lista
     pLista->Ultimo++;
-
+    
     //inserção concluída
     return 1;
 }

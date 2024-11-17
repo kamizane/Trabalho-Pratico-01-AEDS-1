@@ -5,7 +5,7 @@
 #include <string.h>
 
 //função para inicializar uma rocha
-void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, MLista *lista, LocalRochaMineral local, char dataColeta[10]){
+void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, MLista *lista, LocalRochaMineral local, char dataColeta[20]){
 
     setId(rocha, id);
     setPeso(rocha, peso);
@@ -81,13 +81,14 @@ void escolheCategoria(RochaMineral *rocha){
             tAquavitae = 1;
         }else if(strcmp(m.nome, "Terranita") == 0){
             tTerranita = 1;
-        }else{
+        }else if (strcmp(m.nome, "Calaris") == 0){
             tCalaris = 1;
         } 
     }
 
     //definindo a categoria da rocha de acordo com os minerais que estão presentes na lista
     if(tAquavitae && tCalaris && tFerrolita){
+
         setCategoria(rocha, AQUACALIS);
 
     }else if(tTerranita && tFerrolita){
