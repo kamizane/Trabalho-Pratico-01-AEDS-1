@@ -158,15 +158,18 @@ int main(int argc,char **argv){
                     strcpy(aux,buffer);
                     atribui_mineral(&minerais_terminal[m],aux);
                     printf("mineral feito %s\n",minerais_terminal[m].nome);
-                    TItem x;
-                    strcpy(x.Chave.nome, minerais_terminal[m].nome);
+                    TItem x = {minerais_terminal[m]};
+                    /*strcpy(x.Chave.nome, minerais_terminal[m].nome);
+                    strcpy(x.Chave.cor, minerais_terminal[m].cor);
+                    x.Chave.dureza = minerais_terminal[m].dureza;
+                    x.Chave.reatividade = minerais_terminal[m].reatividade;*/
                     insereMineralLista(&lista_minerais_terminal, x);
                     printf("Inseriu na lista,nome %s\n", lista_minerais_terminal.minerais->Chave.nome);
                     
 
                     m++;
                 }
-                imprimeListaMinerais(&lista_minerais_terminal);
+                //imprimeListaMinerais(&lista_minerais_terminal);
                 printf("4");
                 operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
                 printf("5");
