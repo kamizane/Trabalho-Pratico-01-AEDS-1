@@ -36,12 +36,11 @@ int compartimento_eh_vazio(Compartimento* compartimento){
     return (compartimento->tamanho == 0);
 }
 
-int imprime_compartimento(Compartimento* compartimento, FILE *saida){    
+int imprime_compartimento(Compartimento* compartimento){    
     Ccelula* celula;
  
     if (compartimento_eh_vazio(compartimento)){
         printf("compartimento vazio!\n");
-        fprintf(saida, "compartimento vazio!\n");
         return 0;
     }
   
@@ -50,7 +49,7 @@ int imprime_compartimento(Compartimento* compartimento, FILE *saida){
    
 
         printf("%s %.2f\n",celula->rocha.categoria, celula->rocha.peso);
-        fprintf(saida, "%s %.2f\n",celula->rocha.categoria, celula->rocha.peso);
+        
         
         celula = celula->prox;
       
