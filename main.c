@@ -31,6 +31,7 @@ int main(int argc,char **argv){
         int numero_sondas;
         fscanf(file, "%d",&numero_sondas);
 
+
         if(numero_sondas == 0){
             printf("Nenhuma sonda foi enviada pela AEDS\n");
             return 0;
@@ -38,7 +39,7 @@ int main(int argc,char **argv){
 
         for (int i=0; i<numero_sondas; i++){
             char id[20];
-            sprintf(id, "%d", i);
+            sprintf(id, "%d", i+1);
             Sonda_espacial sonda;
             float lat_i,long_i,capacidade_i,velocidade_i,combustivel_i;
             fscanf(file, "%f %f %f %f %f", &lat_i,&long_i,&capacidade_i,&velocidade_i,&combustivel_i);
@@ -47,44 +48,58 @@ int main(int argc,char **argv){
             
         }
         int N_instrucao;
-        fscanf(file,"%d",&N_instrucao);
-        ListaMinerais lista_minerais_file;
-        fListaMineraisVazia(&lista_minerais_file);
+        fscanf(file,"%d\n",&N_instrucao);
+
         for(int i=0;i<N_instrucao;i++){
+            printf("%d\n",i);
             char instrucao;
             fscanf(file,"%c",&instrucao);
+            printf("%c", instrucao);
             char linha[255];
+            
             switch (instrucao)
             {
             case 'R':
-                
                 fgets(linha,255,file);
+
+                fscanf(file,"%[^\n]", &linha);
                 char * buffer = NULL;
-                const char delim[2] = " ";
+                const char delim[3] = " ";
                 buffer = strtok(linha,delim);
                 float lat_rocha = atof (buffer);
+
                 buffer = strtok(NULL,delim);
                 float long_rocha = atof(buffer);
+
                 buffer = strtok(NULL,delim);
                 float peso_rocha = atof (buffer);
+
+
                 Mineral minerais[2];
                 char nome_mineral[15];
+                ListaMinerais lista_minerais_file;
+                fListaMineraisVazia(&lista_minerais_file);
+
                 int m = 0;
-                while(buffer != NULL){
-                    buffer = strtok(NULL,delim);
+                while((buffer = strtok(NULL, delim)) != NULL && m < 2){
+
                     strcpy(nome_mineral,buffer);
                     atribui_mineral(&minerais[m],nome_mineral);
-                    TItem a; 
-                    a.Chave = minerais[m];
+
+                    TItem a = {minerais[m]}; 
                     insereMineralLista(&lista_minerais_file, a);
+
                     //strcpy(minerais[i].nome,buffer);//corrigir
                     m++;
                 }
+                printf("\n");
                 operacao_R(&lista_de_sondas_file,lat_rocha, long_rocha, peso_rocha, &lista_minerais_file);
 
+                fgets(linha,255,file);
                 break;
             case 'I':
                 operacao_I(&lista_de_sondas_file);
+                fgets(linha,255,file);
                 break;
             case 'E':
 
@@ -178,7 +193,6 @@ int main(int argc,char **argv){
             case 'I':
 
                 operacao_I(&Lista_de_sondas_terminal);
-                
                 break;
 
             case 'E':
@@ -197,49 +211,47 @@ int main(int argc,char **argv){
 }
 
 void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long_rocha, float peso_rocha, ListaMinerais* lista_minerais){
-    printf("4.1\n");
     LocalRochaMineral local;
     local.latitude = lat_rocha;
     local.longitude = long_rocha;
     RochaMineral rocha_file;
-    printf("4.2\n");
+
     static int contId = 1;
-    imprimeListaMinerais(lista_minerais);
+
     inicializaRochaMineral(&rocha_file, contId, peso_rocha , lista_minerais,local,"00:00:00");
-    printf("conid = %d\n", contId);
-    printf("4.3\n");
+
+
     int cont = lista_sondas->QntItens;
     float menor_d;
     float distancia;
     Celula* sonda_mais_perto;
     Celula* aux = lista_sondas->pPrimeiro->pProx;
-    printf("4.4\n");
+
     for (int i=0;i<cont;i++){
         distancia = calcula_distancia(aux->item_sonda.Localizacao_sonda.Longitude,aux->item_sonda.Localizacao_sonda.Latitude, long_rocha, lat_rocha);
-        printf("4.5\n");
         //é ruim passar a latitude assim? deveria chamar uma função get?
         if (distancia < menor_d){
-            printf("4.6\n");
+
             if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file) == 1){
-                printf("4.7\n");
+
                 menor_d = distancia;
                 sonda_mais_perto = aux;
                 return;
             }else if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file) == 2){
                 return;
             }else if ((aux->item_sonda.Compartimento.peso_atual + rocha_file.peso) <= aux->item_sonda.Compartimento.peso_maximo ){
-                printf("4.8\n");
+
                 menor_d = distancia;
                 sonda_mais_perto = aux;
             }
         }
         aux = aux->pProx;
-        printf("4.9\n");
+
     }
     move_Sonda_Espacial(&sonda_mais_perto->item_sonda,lat_rocha,long_rocha);
-    printf("4.10\n");
+
     inserir_rocha(&sonda_mais_perto->item_sonda.Compartimento, &rocha_file);
-    printf("4.11\n");
+
 
     contId++;
 }
