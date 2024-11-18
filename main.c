@@ -151,7 +151,6 @@ int main(int argc,char **argv){
                 printf("Digite a latitude, longitude, peso, categoria e os minerais da rocha (ex: -4.6 137.5 20 Ferrolita Aquavitae): \n");
                 getchar();
                 scanf("%[^\n]", &linha_terminal);
-                printf("1");
                 char * buffer = NULL;
                 const char delim[2] = " ";
                 buffer = strtok(linha_terminal,delim);
@@ -160,34 +159,28 @@ int main(int argc,char **argv){
                 float long_rocha_terminal = atof(buffer);
                 buffer = strtok(NULL,delim);
                 float peso_rocha_terminal = atof (buffer);
-                printf("2");
                 int counter = 0;
                 char aux[20];
                 Mineral minerais_terminal[2];
                 ListaMinerais lista_minerais_terminal;
                 fListaMineraisVazia(&lista_minerais_terminal);
-                printf("3\n");
                 int m = 0;
                 while((buffer = strtok(NULL, delim)) != NULL && m < 2){
-                    printf("ta, entrou\n");
                     strcpy(aux,buffer);
                     atribui_mineral(&minerais_terminal[m],aux);
-                    printf("mineral feito %s\n",minerais_terminal[m].nome);
                     TItem x = {minerais_terminal[m]};
                     /*strcpy(x.Chave.nome, minerais_terminal[m].nome);
                     strcpy(x.Chave.cor, minerais_terminal[m].cor);
                     x.Chave.dureza = minerais_terminal[m].dureza;
                     x.Chave.reatividade = minerais_terminal[m].reatividade;*/
                     insereMineralLista(&lista_minerais_terminal, x);
-                    printf("Inseriu na lista,nome %s\n", lista_minerais_terminal.minerais->Chave.nome);
                     
 
                     m++;
                 }
                 //imprimeListaMinerais(&lista_minerais_terminal);
-                printf("4");
+                printf("\n");
                 operacao_R(&Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,&lista_minerais_terminal);
-                printf("5");
                 break;}
 
             case 'I':
