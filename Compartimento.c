@@ -97,7 +97,7 @@ int inserir_rocha(Compartimento* compartimento, RochaMineral* rocha){
     return 0;
 }
 
-int remover_rocha(Compartimento* compartimento, char categoria[]){ //
+int remover_rocha(Compartimento* compartimento, char categoria[], RochaMineral* rocha_retirada){ //
     Ccelula* anterior;
     Ccelula* celula;
 
@@ -111,9 +111,13 @@ int remover_rocha(Compartimento* compartimento, char categoria[]){ //
         if(strcmp(categoria, celula->rocha.categoria) == 0){
             anterior->prox = celula->prox;
             compartimento->peso_atual -= celula->rocha.peso;
+            *rocha_retirada = celula->rocha;
+            if (celula->prox == NULL){
+                compartimento->ultimo = anterior;
+            }
             free(celula);
             compartimento->tamanho--;
-
+            
             return 1; 
 
         }
