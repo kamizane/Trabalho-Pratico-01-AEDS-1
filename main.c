@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
 #include "Sonda_espacial.h"
 #include "Lista_sonda_espacial.h"
 #include "Mineral.h"
@@ -51,10 +50,8 @@ int main(int argc,char **argv){
         fscanf(file,"%d\n",&N_instrucao);
 
         for(int i=0;i<N_instrucao;i++){
-            printf("%d\n",i);
             char instrucao;
             fscanf(file,"%c",&instrucao);
-            printf("%c", instrucao);
             char linha[255];
             
             switch (instrucao)
@@ -226,23 +223,31 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
         if (distancia < menor_d){
 
             if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file) == 1){
-
                 menor_d = distancia;
+                if(aux != NULL){
                 sonda_mais_perto = aux;
+                }
+                move_Sonda_Espacial(&sonda_mais_perto->item_sonda,lat_rocha,long_rocha);
                 return;
-            }else if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file) == 2){
-                return;
+            // }else if(trocar_rocha(&aux->item_sonda.Compartimento,&rocha_file) == 2){
+            //     menor_d = distancia;
+            //     if(aux != NULL){
+            //     sonda_mais_perto = aux;
+            //     }
+            //     move_Sonda_Espacial(&sonda_mais_perto->item_sonda,lat_rocha,long_rocha);
             }else if ((aux->item_sonda.Compartimento.peso_atual + rocha_file.peso) <= aux->item_sonda.Compartimento.peso_maximo ){
 
                 menor_d = distancia;
+                if(aux != NULL){
                 sonda_mais_perto = aux;
+                }
+
             }
         }
         aux = aux->pProx;
 
     }
     move_Sonda_Espacial(&sonda_mais_perto->item_sonda,lat_rocha,long_rocha);
-
     inserir_rocha(&sonda_mais_perto->item_sonda.Compartimento, &rocha_file);
 
 

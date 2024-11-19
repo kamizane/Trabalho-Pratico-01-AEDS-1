@@ -4,19 +4,7 @@
 #include "Compartimento.h"
 
 
-const char * nomesRochas[]={
-    " ",//vazio pois o enum CategoriaRochaMineral começa do 1
-    "FERROM",
-    "SOLARIS",
-    "AQUAFERRO",
-    "TERROLIS",
-    "TERRASOL",
-    "AQUATERRA",
-    "CALQUER",
-    "SOLARISFER",
-    "TERRALIS",
-    "AQUACALIS"
-};
+
 
 void faz_compartimento_vazio(Compartimento* compartimento, float peso_max){
 
@@ -83,7 +71,6 @@ int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
 
                         return 1;
                     }
-                    return 2;
                 }
 
             celula = celula->prox;
