@@ -295,11 +295,12 @@ int operacao_E(Lista_sonda_espacial * lista_sondas){
     aux = lista_sondas->pPrimeiro->pProx;
     Ccelula* apontador = NULL;
     int indice = 0;
-    for (int counter = 0; counter < cont_sondas; counter++){
+    for (int counter = 0; counter < cont_sondas; counter++){// percorre por todas as sondas para colocar rochas em uma lista
         apontador = aux->item_sonda.Compartimento.primeiro->prox;
-        int tamanho_compartimento_atual = aux->item_sonda.Compartimento.tamanho;
+        
+        int tamanho_compartimento_atual = aux->item_sonda.Compartimento.tamanho;    
 
-        for (int j = 0; j < tamanho_compartimento_atual; j++){
+        for (int j = 0; j < tamanho_compartimento_atual; j++){ // percorre todas as rochas do compartimento de cada sonda, removendo elas do compartimento e adicionando no vetor
             RochaMineral rocha_retirada;
             remover_rocha(&aux->item_sonda.Compartimento, apontador->rocha.categoria,&rocha_retirada);
             lista_rochas[indice] = rocha_retirada;
@@ -309,10 +310,41 @@ int operacao_E(Lista_sonda_espacial * lista_sondas){
 
         aux = aux->pProx;
     }
-    for (int heitor = 0; heitor<quantidade_de_rochas; heitor++){
-        printf("espaco %d:\n", heitor);
-        printf("%s\n", lista_rochas[heitor].categoria);
+    // printf("lista antes da ordenacao:\n");
+    // for (int heitor = 0; heitor<quantidade_de_rochas; heitor++){
+    //     //  printf("espaco %d:\n", heitor);
+    //      printf("%s - %f\n", lista_rochas[heitor].categoria, lista_rochas[heitor].peso );
+    //  }
+
+    for (int i = 0; i < quantidade_de_rochas; i++){ //ordena o vetor de forma decrescente
+        for (int j = i; j < quantidade_de_rochas; j++){
+            if (lista_rochas[i].peso<lista_rochas[j].peso){
+                RochaMineral auxiliar = lista_rochas[i]; 
+                lista_rochas[i] = lista_rochas[j];
+                lista_rochas[j] = auxiliar;
+            }
+        }
     }
+    
+    for (int i = 0; i < quantidade_de_rochas; i++){ //distribui as rochas nas sondas de acordo com a que tem menor peso
+        aux = lista_sondas->pPrimeiro->pProx;
+        Celula* menor = lista_sondas->pPrimeiro->pProx;
+        for (int j = 0 ; j < lista_sondas->QntItens ; j++){//descobre qual a sonda com o menor peso
+
+            if (aux->item_sonda.Compartimento.peso_atual < menor->item_sonda.Compartimento.peso_atual && aux->item_sonda.Compartimento.peso_atual + lista_rochas[i].peso <= aux->item_sonda.Compartimento.peso_maximo){
+                menor = aux;
+            }
+            
+            aux = aux->pProx;
+        }
+
+        inserir_rocha(&menor->item_sonda.Compartimento, &lista_rochas[i]);
+    }
+    // printf("lista depois da ordenacao:\n");
+    //  for (int heitor = 0; heitor<quantidade_de_rochas; heitor++){
+    //     //  printf("espaco %d:\n", heitor);
+    //      printf("%s - %f\n", lista_rochas[heitor].categoria, lista_rochas[heitor].peso );
+    //  }
 
     return 1;
 }
