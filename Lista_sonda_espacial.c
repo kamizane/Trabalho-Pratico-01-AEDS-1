@@ -54,7 +54,7 @@ int retira_item_lista_sonda_espacial(Lista_sonda_espacial* lista_sonda, char * i
             }
 
         }
-        printf("sonda com identificador %s não encontrado.", *id);
+        printf("sonda com identificador %s não encontrado.", id);
         return 0;
     }
 }

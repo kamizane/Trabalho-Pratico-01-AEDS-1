@@ -12,16 +12,16 @@ void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, float latitude
 }
 void preenche_Sonda_Espacial(Sonda_espacial * sonda){
     char id[20];
-    float latitude,longitude;
-    float capacidade,velocidade,combustivel;
+    float latitude = 0,longitude = 0;
+    float capacidade = 0,velocidade = 0,combustivel = 0;
     printf("Digite o identificador da Sonda espacial: ");
     scanf("%[^\n]", id);
 
     printf("Digite a latitude da Sonda espacial: ");
-    scanf("%f", latitude);
+    scanf("%f", &latitude);
 
     printf("Digite a longitude da Sonda espacial: ");
-    scanf("%f", longitude);
+    scanf("%f", &longitude);
 
 
     inicializa_Sonda_Espacial(sonda, id, latitude, longitude,capacidade,velocidade,combustivel);

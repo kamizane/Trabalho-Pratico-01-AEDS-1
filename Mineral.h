@@ -15,7 +15,7 @@ void atribui_mineral(Mineral * mineral, char nome_mineral[]);
 
 void cria_catalogo_minerais(Mineral minerais[5]);
 
-int inicializa_mineral(Mineral * mineral, char * nome, char * cor, float dureza, float reatividade);
+void inicializa_mineral(Mineral * mineral, char * nome, char * cor, float dureza, float reatividade);
 
 void preenche_mineral(Mineral * mineral);
 
