@@ -77,13 +77,11 @@ void preenche_mineral(Mineral * mineral){ //pede ao uzuário todas as informaç�
     inicializa_mineral(mineral, nome, cor, dureza, reatividade);
 }
 
-int inicializa_mineral(Mineral * mineral, char nome[], char cor[], float dureza, float reatividade){ //joga tudo no tad
+void inicializa_mineral(Mineral * mineral, char nome[], char cor[], float dureza, float reatividade){ //joga tudo no tad
     set_nome(mineral, nome);
     set_cor(mineral, cor);
     set_dureza(mineral, dureza);
     set_reatividade(mineral, reatividade);
-  
-    return 0;
 }
 
 

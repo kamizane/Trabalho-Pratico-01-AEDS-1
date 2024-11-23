@@ -1,11 +1,11 @@
 #include "RochaMineral.h"
-#include "Mineral.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 //função para inicializar uma rocha
-void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, MLista *lista, LocalRochaMineral local, char dataColeta[20]){
+void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, MLista *lista, LocalRochaMineral local, char *dataColeta){
        
     setId(rocha, id);
     setPeso(rocha, peso);

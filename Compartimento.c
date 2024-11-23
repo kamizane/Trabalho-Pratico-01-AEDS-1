@@ -7,7 +7,6 @@
 
 
 void faz_compartimento_vazio(Compartimento* compartimento, float peso_max){
-
     compartimento->primeiro = (Ccelula*) malloc(sizeof(Ccelula));
     compartimento->ultimo = compartimento->primeiro;
     compartimento->primeiro->prox = NULL;
@@ -52,30 +51,36 @@ float retorna_peso_atual(Compartimento* compartimento){
 }
 
 int trocar_rocha(Compartimento* compartimento, RochaMineral* rocha){
-    Ccelula* celula;
-
-    celula = compartimento->primeiro->prox;
+    Ccelula* celula = compartimento->primeiro->prox;
+    
     if (!compartimento_eh_vazio(compartimento)){
-        do{
-            
-
-
-                if (strcmp(celula->rocha.categoria,rocha->categoria) == 0){  
-
-
-                    if (celula->rocha.peso > rocha->peso){
-
+        while (celula != NULL) {
+            if (strcmp(celula->rocha.categoria, rocha->categoria) == 0) {
+                if (celula->rocha.peso > rocha->peso) {
                         compartimento->peso_atual -= celula->rocha.peso;
                         celula->rocha = *rocha;
                         compartimento->peso_atual += celula->rocha.peso;
-
                         return 1;
-                    }
                 }
-
+            }
             celula = celula->prox;
+        }
 
-        }while(celula != NULL);
+        return 0;
+        // do{
+        //         if (strcmp(celula->rocha.categoria, rocha->categoria) == 0){  
+
+        //             if (celula->rocha.peso > rocha->peso){
+        //                 compartimento->peso_atual -= celula->rocha.peso;
+        //                 celula->rocha = *rocha;
+        //                 compartimento->peso_atual += celula->rocha.peso;
+        //                 return 1;
+        //             }
+        //         }
+
+        //     celula = celula->prox;
+
+        // }while(celula != NULL);
     }
 
     return 0;
@@ -101,22 +106,23 @@ int remover_rocha(Compartimento* compartimento, char categoria[], RochaMineral* 
     Ccelula* anterior = compartimento->primeiro;
     Ccelula* celula = compartimento->primeiro->prox;
 
-    do{
+    while (celula != NULL) {
         if(strcmp(categoria, celula->rocha.categoria) == 0){
+            
             anterior->prox = celula->prox;
             compartimento->peso_atual -= celula->rocha.peso;
             *rocha_retirada = celula->rocha;
-            if (celula->prox == NULL){
-                compartimento->ultimo = anterior;
-            }
-            free(celula);
+
+            if (celula->prox == NULL) compartimento->ultimo = anterior;
             compartimento->tamanho--;
+
+            free(celula);
             return 1; 
         }
         
         anterior = celula;
         celula = celula->prox;
-    } while(celula != NULL);
+    }
 
     return 0;
 }

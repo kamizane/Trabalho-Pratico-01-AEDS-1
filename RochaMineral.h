@@ -23,7 +23,7 @@ typedef struct RochaMineral{
 //cabeçalho das funções
 
 void inicializaRochaMineral(RochaMineral *rocha, int id, float peso, MLista *lista,
-    LocalRochaMineral local, char dataColeta[10]);
+    LocalRochaMineral local, char *dataColeta);
 
 int getId(RochaMineral* rocha);
 float getPeso(RochaMineral* rocha);

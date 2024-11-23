@@ -5,7 +5,6 @@
 
 #include "Mineral.h"
 
-
 //definindo o tipo Apontador
 typedef int Apontador;
 typedef Mineral TChave;

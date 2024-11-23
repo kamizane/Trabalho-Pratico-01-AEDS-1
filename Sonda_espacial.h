@@ -1,5 +1,6 @@
 #ifndef SONDA_ESPACIAL_H
 #define SONDA_ESPACIAL_H
+
 #include "Compartimento.h"
 
 typedef struct{
@@ -18,7 +19,6 @@ typedef struct {
     Compartimento Compartimento;
     Localizacao Localizacao_sonda;
     EstaLigada EstaLigada;
-    float Capacidade_sonda;
     float Velocidade_sonda;
     float Combustivel_sonda;
 }Sonda_espacial;
