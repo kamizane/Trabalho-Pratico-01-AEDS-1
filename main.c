@@ -46,7 +46,7 @@ int main(int argc, char **argv){
             
         }
         
-        int N_instrucao;
+        int N_instrucao = 0;
         fscanf(file,"%d",&N_instrucao); fgetc(file);
         
         Mineral minerais[3];
@@ -82,7 +82,7 @@ int main(int argc, char **argv){
                 peso_rocha = atof(buffer);
 
                 int m = 0;
-                
+                fListaMineraisVazia(&lista_minerais_file);
                 while((buffer = strtok(NULL, delim)) != NULL){
                     strcpy(nome_mineral, buffer);
                     atribui_mineral(&minerais[m], nome_mineral);
@@ -159,7 +159,6 @@ int main(int argc, char **argv){
                 float long_rocha_terminal = atof(buffer);
                 buffer = strtok(NULL,delim);
                 float peso_rocha_terminal = atof (buffer);
-                int counter = 0;
                 char aux[20];
                 
                 Mineral minerais_terminal[2];
@@ -249,13 +248,12 @@ void operacao_I(Lista_sonda_espacial * lista_sondas){
     Celula* aux = lista_sondas->pPrimeiro->pProx;
     
     for (int i = 0;i < cont_sondas; i++){
-        int cont_rochas = aux->item_sonda.Compartimento.tamanho;
         printf("%s\n", aux->item_sonda.Identificador);
 
         imprime_compartimento(&aux->item_sonda.Compartimento);
             //printf("%s %.1f",aux_comp->rocha,aux_comp->rocha.peso);
             //aux_comp = aux_comp->prox;
-        aux = aux->pProx;   
+        aux = aux->pProx;
     }
 }
 
@@ -276,7 +274,7 @@ int operacao_E(Lista_sonda_espacial * lista_sondas){
     
     RochaMineral* lista_rochas= (RochaMineral*) malloc(quantidade_de_rochas * sizeof(RochaMineral)); //faz lista de rochas para redistribuir depois
     aux = lista_sondas->pPrimeiro->pProx;
-    
+    Ccelula* comp_aux = NULL;
     Ccelula* apontador = NULL;
     int indice = 0;
 
@@ -285,10 +283,11 @@ int operacao_E(Lista_sonda_espacial * lista_sondas){
         
         while (apontador != NULL) { // percorre todas as rochas do compartimento de cada sonda, removendo elas do compartimento e adicionando no vetor
             RochaMineral rocha_retirada;
-            remover_rocha(&aux->item_sonda.Compartimento, apontador->rocha.categoria, &rocha_retirada);
+            comp_aux = apontador;
+            apontador = apontador->prox;
+            remover_rocha(&aux->item_sonda.Compartimento, comp_aux->rocha.categoria, &rocha_retirada);
             lista_rochas[indice++] = rocha_retirada;
             // printf("TAMANHO DA BENGA ITERADO: %d\n", tamanho_do_compartimento(&aux->item_sonda.Compartimento));
-            apontador = apontador->prox;
         }
 
         // printf("TAMANHO DA BENGA: %d\n", tamanho_do_compartimento(&aux->item_sonda.Compartimento));

@@ -19,7 +19,6 @@ typedef struct {
     Compartimento Compartimento;
     Localizacao Localizacao_sonda;
     EstaLigada EstaLigada;
-    float Capacidade_sonda;
     float Velocidade_sonda;
     float Combustivel_sonda;
 }Sonda_espacial;
