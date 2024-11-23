@@ -3,7 +3,7 @@
 #define MINERAL_H
 
 
-
+//define a struct mineral contendo nome, cor, dureza e reatividade
 typedef struct Mineral {
     char nome[20];
     char cor[20];
@@ -13,11 +13,8 @@ typedef struct Mineral {
 
 void atribui_mineral(Mineral * mineral, char nome_mineral[]);
 
-void cria_catalogo_minerais(Mineral minerais[5]);
-
 void inicializa_mineral(Mineral * mineral, char * nome, char * cor, float dureza, float reatividade);
 
-void preenche_mineral(Mineral * mineral);
 
 char * get_nome(Mineral * mineral);
 char * get_cor(Mineral * mineral);
