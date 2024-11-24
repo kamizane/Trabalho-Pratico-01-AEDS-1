@@ -2,6 +2,7 @@
 #include <string.h>
 #include "./Sonda_espacial.h"
 
+//inicializa uma sonda e preenche os seus campos usando sets
 void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, float latitude,float longitude, float capacidade, float velocidade, float combustivel){
     set_Identificador(sonda, id);
     set_Compartimento(sonda, capacidade);
@@ -10,24 +11,8 @@ void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, float latitude
     set_Combustivel(sonda, combustivel);
     set_EstaLigada(sonda, OFF);
 }
-void preenche_Sonda_Espacial(Sonda_espacial * sonda){
-    char id[20];
-    float latitude = 0,longitude = 0;
-    float capacidade = 0,velocidade = 0,combustivel = 0;
-    printf("Digite o identificador da Sonda espacial: ");
-    scanf("%[^\n]", id);
 
-    printf("Digite a latitude da Sonda espacial: ");
-    scanf("%f", &latitude);
-
-    printf("Digite a longitude da Sonda espacial: ");
-    scanf("%f", &longitude);
-
-
-    inicializa_Sonda_Espacial(sonda, id, latitude, longitude,capacidade,velocidade,combustivel);
-
-
-}
+//verifica se a sonda ja está ligada, senão liga
 int liga_Sonda_Espacial(Sonda_espacial * sonda){
     if (sonda->EstaLigada == ON){
         return 0;
@@ -37,6 +22,8 @@ int liga_Sonda_Espacial(Sonda_espacial * sonda){
         return 1;
     }
 }
+
+//verifica se a sonda ja está desligada, senão desliga
 int desliga_Sonda_Espacial(Sonda_espacial * sonda){
     if (sonda->EstaLigada == OFF){
         return 0;
@@ -54,7 +41,7 @@ void set_Identificador(Sonda_espacial*sonda, char * id){
 }
 
 void set_Compartimento(Sonda_espacial*sonda, float capacidade){
-    faz_compartimento_vazio(&sonda->Compartimento, capacidade);//pode ter um erro aqui
+    faz_compartimento_vazio(&sonda->Compartimento, capacidade);
 }
 void set_Localizacao_sonda(Sonda_espacial * sonda, float latitude, float longitude){
     sonda->Localizacao_sonda.Latitude = latitude;

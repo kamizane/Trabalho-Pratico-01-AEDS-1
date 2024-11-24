@@ -3,6 +3,8 @@
 
 #include "../Sonda_espacial/Sonda_espacial.h"
 
+
+//implementação da lista usando lista encadeada de acordo com a implementação do ziviane
 typedef struct Celula {
     Sonda_espacial item_sonda;
     struct Celula* pProx;
@@ -11,7 +13,7 @@ typedef struct Celula {
 typedef struct {
     Celula* pPrimeiro;
     Celula* pUltimo;
-    int QntItens;
+    int QntItens;//única diferença é que adicionamos um atributo que contém o número de itens na lista
 }Lista_sonda_espacial;
 
 

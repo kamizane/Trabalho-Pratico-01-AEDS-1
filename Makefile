@@ -5,7 +5,7 @@
 # #gdb --args .\main.exe -f teste1.txt
 
 CC=gcc
-CFLAGS=-Wall -Wextra -g  -I./src/Compartimento -I./src/Lista_sonda_espacial -I./src/ListaMinerais -I./src/Mineral -I./src/RochaMineral -I./src/Sonda_espacial
+CFLAGS=-Wall -Wextra -g  -I./src/Compartimento -I./src/Lista_sonda_espacial -I./src/ListaMinerais -I./src/Mineral -I./src/RochaMineral -I./src/Sonda_espacial ./src/main.c
 SRC=$(wildcard src/*/*.c src/*/*/*.c)
 OBJ=$(SRC:.c=.o)
 TARGET=main.exe
