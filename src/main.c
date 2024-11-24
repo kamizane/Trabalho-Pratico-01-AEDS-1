@@ -17,7 +17,7 @@ void operacao_I(Lista_sonda_espacial * lista_sondas);
 int operacao_E(Lista_sonda_espacial * lista_sondas);
 
 int main(int argc, char **argv){
-        if (leitura_arq(argc,argv) != 0){
+    if (leitura_arq(argc,argv) != 0){
         FILE *file = leitura_arq(argc,argv);
         if (file == NULL){//verifica se o arquivo tem algo a ser lido
             printf("Arquivo de entrada Invalido");

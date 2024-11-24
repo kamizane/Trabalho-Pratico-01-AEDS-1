@@ -13,7 +13,7 @@ typedef struct Mineral {
 
 void atribui_mineral(Mineral * mineral, char nome_mineral[]);
 
-void inicializa_mineral(Mineral * mineral, char * nome, char * cor, float dureza, float reatividade);
+void inicializa_mineral(Mineral * mineral, char nome[], char cor[], float dureza, float reatividade);
 
 
 char * get_nome(Mineral * mineral);
