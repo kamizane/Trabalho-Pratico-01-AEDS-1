@@ -20,6 +20,7 @@ int main(int argc, char **argv){
         if (leitura_arq(argc,argv) != 0){
         FILE *file = leitura_arq(argc,argv);
         if (file == NULL){//verifica se o arquivo tem algo a ser lido
+            printf("Arquivo de entrada não existe");
             return 0;
         }
         //cria e inicializa sonda espacial
