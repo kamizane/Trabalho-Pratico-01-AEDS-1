@@ -2,9 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
-#include "Sonda_espacial.h"
-#include "Lista_sonda_espacial.h"
+#include "Sonda_espacial/Sonda_espacial.h"
+#include "Lista_sondas_espaciais/Lista_sonda_espacial.h"
 
 //Cabeçalho das funções
 void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long_rocha, float peso_rocha, ListaMinerais* lista_minerais);

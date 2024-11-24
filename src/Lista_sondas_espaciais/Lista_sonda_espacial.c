@@ -1,6 +1,6 @@
-#include "Lista_sonda_espacial.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "./Lista_sonda_espacial.h"
 
 void inicializa_lista_sonda_espacial(Lista_sonda_espacial * lista_sonda){
     lista_sonda->pPrimeiro = (Celula*) malloc (sizeof(Celula));

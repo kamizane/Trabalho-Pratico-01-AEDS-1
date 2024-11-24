@@ -1,7 +1,7 @@
 #ifndef SONDA_ESPACIAL_H
 #define SONDA_ESPACIAL_H
 
-#include "Compartimento.h"
+#include "../Compartimento/Compartimento.h"
 
 typedef struct{
     float Latitude;

@@ -1,6 +1,6 @@
-#include "Sonda_espacial.h"
 #include <stdio.h>
 #include <string.h>
+#include "./Sonda_espacial.h"
 
 void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, float latitude,float longitude, float capacidade, float velocidade, float combustivel){
     set_Identificador(sonda, id);

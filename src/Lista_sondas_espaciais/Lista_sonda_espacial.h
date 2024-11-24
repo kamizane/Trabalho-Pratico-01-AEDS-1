@@ -1,7 +1,7 @@
 #ifndef LISTA_SONDA_ESPACIAL_H
 #define LISTA_SONDA_ESPACIAL_H
 
-#include "Sonda_espacial.h"
+#include "../Sonda_espacial/Sonda_espacial.h"
 
 typedef struct Celula {
     Sonda_espacial item_sonda;
