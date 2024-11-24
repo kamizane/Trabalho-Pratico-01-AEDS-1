@@ -3,6 +3,7 @@
 
 #include "../RochaMineral/RochaMineral.h"
 
+//define a estrutura da celula que contem a rocha e um apontador para a proxima celula
 typedef struct celula{
 
     RochaMineral rocha;
@@ -10,6 +11,8 @@ typedef struct celula{
 
 } Ccelula;
 
+/*estrutura do compartimento, com o ponteiro primeiro (basico para lista encadeada),
+um ultimo, o tamanho, o peso atual e o peso máximo, que serao usados posteriormente*/
 typedef struct{
 
     Ccelula * primeiro;
