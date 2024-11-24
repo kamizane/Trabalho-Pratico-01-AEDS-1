@@ -5,7 +5,7 @@
 #include "Sonda_espacial/Sonda_espacial.h"
 #include "Lista_sondas_espaciais/Lista_sonda_espacial.h"
 
-//Cabeçalho das funções
+//Cabecalho das funcoes
 FILE *leitura_arq(int argc, char **argv);
 void preenche_sonda_arq(int numero_sondas, FILE * file, Lista_sonda_espacial * lista_de_sondas_file);
 void preenche_sonda_terminal(int numero_de_sondas,Lista_sonda_espacial *Lista_de_sondas_terminal);
@@ -20,32 +20,32 @@ int main(int argc, char **argv){
         if (leitura_arq(argc,argv) != 0){
         FILE *file = leitura_arq(argc,argv);
         if (file == NULL){//verifica se o arquivo tem algo a ser lido
-            printf("Arquivo de entrada não existe");
+            printf("Arquivo de entrada Invalido");
             return 0;
         }
         //cria e inicializa sonda espacial
         Lista_sonda_espacial lista_de_sondas_file;
         inicializa_lista_sonda_espacial(&lista_de_sondas_file);
 
-        //recebe número de sondas
+        //recebe numero de sondas
         int numero_sondas = 0;
         fscanf(file, "%d", &numero_sondas); fgetc(file);
-        if(numero_sondas == 0){//verifica se é número válido
+        if(numero_sondas == 0){//verifica se e numero valido
             printf("Nenhuma sonda foi enviada pela AEDS\n");
             return 0;
         }
 
         preenche_sonda_arq(numero_sondas, file, &lista_de_sondas_file);
         
-        //lê o número de instruções a serem executadas
+        //le o numero de instrucoes a serem executadas
         int N_instrucao = 0;
         fscanf(file,"%d",&N_instrucao); fgetc(file);
 
-        //executa a quantidade de instruções informadas
+        //executa a quantidade de instrucoes informadas
         for(int i=0;i<N_instrucao;i++){
             char instrucao;
 
-            //lê a instrução informada
+            //le a instrucao informada
             fscanf(file,"%c", &instrucao); fgetc(file);
 
             //Verifica qual foi o caractere inserido e aciona o "case" correspondente
@@ -57,21 +57,21 @@ int main(int argc, char **argv){
                 case_R_file(file, &lista_minerais_file,  &lista_de_sondas_file);
                 break;}
             case 'I':
-                //chamada da operação I com apenas a lista de sondas como parâmetro
+                //chamada da operacao I com apenas a lista de sondas como parametro
                 operacao_I(&lista_de_sondas_file);
                 break;
             case 'E':
-                //chamada da operação E com apenas a lista de sondas como parâmetro
+                //chamada da operacao E com apenas a lista de sondas como parametro
                 operacao_E(&lista_de_sondas_file);
                 break;
             default:
-                //caso seja fornecido alguma operação inválida, ele desconsidera a operação e apssa para a próxima
+                //caso seja fornecido alguma operacao invalida, ele desconsidera a operacao e apssa para a proxima
                 printf("operacao invalida\n");
                 break;
             }
         }
     }
-    else{//caso nenhum parâmetro válido tenha sido passado, o fluxo é desviado para a leitura por terminal
+    else{//caso nenhum parametro valido tenha sido passado, o fluxo eh desviado para a leitura por terminal
         printf("Iniciando missao espacial\n");
         int numero_de_sondas = 0;
         Lista_sonda_espacial Lista_de_sondas_terminal; //cria lista de sondas
@@ -79,7 +79,7 @@ int main(int argc, char **argv){
         printf("Digite o numero de sondas enviada pela AEDS: \n");
         scanf("%d", &numero_de_sondas); //recebe o numero de sondas
         
-        if(numero_de_sondas == 0){//verifica se o número de sondas informado é válido
+        if(numero_de_sondas == 0){//verifica se o numero de sondas informado e valido
             printf("Nenhuma sonda foi enviada pela AEDS\n");
             return 0;
         }
@@ -88,13 +88,13 @@ int main(int argc, char **argv){
         
         int N_instrucao_terminal = 0; 
         printf("Digite o numero de operacoes que as sondas realizarao: \n");
-        scanf("%d", &N_instrucao_terminal); //lê o número de instruções a serem executadas
-        //executa a quantidade de instruções informadas
+        scanf("%d", &N_instrucao_terminal); //le o numero de instrucoes a serem executadas
+        //executa a quantidade de instrucoes informadas
         for(int i = 0; i<N_instrucao_terminal; i++){ 
             char instrucao_terminal;
             printf("Insira a operacao %d: \n", i+1);
             getc(stdin);
-             //lê a instrução informada
+             //le a instrucao informada
             scanf("%c", &instrucao_terminal);
             
             //Verifica qual foi o caractere inserido e aciona o "case" correspondente
@@ -109,17 +109,17 @@ int main(int argc, char **argv){
                 break;}
 
             case 'I':
-                //chamada da operação I com apenas a lista de sondas como parâmetro
+                //chamada da operacao I com apenas a lista de sondas como parametro
                 operacao_I(&Lista_de_sondas_terminal);
                 break;
 
             case 'E':
-                //chamada da operação E com apenas a lista de sondas como parâmetro
+                //chamada da operacao E com apenas a lista de sondas como parametro
                 operacao_E(&Lista_de_sondas_terminal);
                 break;
 
             default:
-                //caso seja inserido alguma operação inválida, ele desconsidera a operação e apssa para a próxima
+                //caso seja inserido alguma operacao invalida, ele desconsidera a operacao e apssa para a proxima
                 printf("operacao invalida\n");
                 break;
             }
@@ -132,7 +132,7 @@ int main(int argc, char **argv){
 
 
 FILE *leitura_arq(int argc, char **argv){
-    //verifica se existe argumentos válidos para iniciar leitura por arquivo
+    //verifica se existe argumentos validos para iniciar leitura por arquivo
     if(argc > 1 && strcmp(argv[1], "-f") == 0){
         FILE *file = fopen(argv[2],"r");
 
@@ -168,10 +168,10 @@ void case_R_file(FILE * file, ListaMinerais * lista_minerais_file, Lista_sonda_e
     fgets(linha,255,file);
     Mineral minerais[3];
     char nome_mineral[15];
-    linha[strlen(linha) - 1] = '\0';//captura a linha logo após a instrução R
+    linha[strlen(linha) - 1] = '\0';//captura a linha logo após a instrucao R
 
-    /*secciona a linha capturada a partir do padrão definido no delim ou seja, 
-    separa os 3 primeiros tokens entre espaço e atribui para sua variável correspondente.*/
+    /*secciona a linha capturada a partir do padrao definido no delim ou seja, 
+    separa os 3 primeiros tokens entre espaco e atribui para sua variavel correspondente.*/
     buffer = strtok(linha,delim);
     lat_rocha = atof(buffer);
 
@@ -184,8 +184,8 @@ void case_R_file(FILE * file, ListaMinerais * lista_minerais_file, Lista_sonda_e
     int m = 0;
     fListaMineraisVazia(lista_minerais_file);
 
-    /*conclui a leitura da linha lendo os últimos tokens e inserindo na lista. Esses tokens varia de 1 a 3, 
-    por isso a verificação que encerra o while ao chegar em um valor NULL*/
+    /*conclui a leitura da linha lendo os ultimos tokens e inserindo na lista. Esses tokens varia de 1 a 3, 
+    por isso a verificacao que encerra o while ao chegar em um valor NULL*/
     while((buffer = strtok(NULL, delim)) != NULL){
         strcpy(nome_mineral, buffer);
         atribui_mineral(&minerais[m], nome_mineral);
@@ -193,7 +193,7 @@ void case_R_file(FILE * file, ListaMinerais * lista_minerais_file, Lista_sonda_e
         insereMineralLista(lista_minerais_file, a);
         m++;
 }
-//chamada da operação R, que têm como parâmetro a lista de sondas e os dados da rocha
+//chamada da operacao R, que tem como parametro a lista de sondas e os dados da rocha
 operacao_R(lista_de_sondas_file,lat_rocha, long_rocha, peso_rocha, lista_minerais_file);
 }
 
@@ -223,8 +223,8 @@ void case_R_arq(ListaMinerais * lista_minerais_terminal, Lista_sonda_espacial * 
     
     char * buffer = NULL;
     const char delim[2] = " ";
-    /*secciona a linha capturada a partir do padrão definido no delim ou seja, 
-    separa os 3 primeiros tokens entre espaço e atribui para sua variável correspondente.*/
+    /*secciona a linha capturada a partir do padrao definido no delim ou seja, 
+    separa os 3 primeiros tokens entre espaco e atribui para sua variavel correspondente.*/
     buffer = strtok(linha_terminal,delim);
     float lat_rocha_terminal =  atof (buffer);
     buffer = strtok(NULL,delim);
@@ -238,8 +238,8 @@ void case_R_arq(ListaMinerais * lista_minerais_terminal, Lista_sonda_espacial * 
 
     int m = 0;
 
-    /*conclui a leitura da linha lendo os últimos tokens e inserindo na lista. Esses tokens varia de 1 a 3, 
-    por isso a verificação que encerra o while ao chegar em um valor NULL*/
+    /*conclui a leitura da linha lendo os ultimos tokens e inserindo na lista. Esses tokens varia de 1 a 3, 
+    por isso a verificacao que encerra o while ao chegar em um valor NULL*/
     while((buffer = strtok(NULL, delim)) != NULL){
         strcpy(aux,buffer);
         atribui_mineral(&minerais_terminal[m],aux);
@@ -247,12 +247,12 @@ void case_R_arq(ListaMinerais * lista_minerais_terminal, Lista_sonda_espacial * 
         insereMineralLista(lista_minerais_terminal, x);
         m++;
     }
-    //chamada da operação R, que têm como parâmetro a lista de sondas e os dados da rocha
+    //chamada da operacao R, que tem como parametro a lista de sondas e os dados da rocha
     operacao_R(Lista_de_sondas_terminal,lat_rocha_terminal,long_rocha_terminal,peso_rocha_terminal,lista_minerais_terminal);
 }
 
 
-//Operação responsável por coletar uma nova rocha
+//Operacao responsavel por coletar uma nova rocha
 void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long_rocha, float peso_rocha, ListaMinerais* lista_minerais){
     static int contId = 1;
 
@@ -273,9 +273,9 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
     //inicia o processo de percerrer todas as sondas e verificar se atende aos requisitos para coletar a rocha
     for (int i = 0;i< cont; i++) {
         distancia = calcula_distancia(aux->item_sonda.Localizacao_sonda.Longitude,aux->item_sonda.Localizacao_sonda.Latitude, long_rocha, lat_rocha);
-        //verifica a primeira condição para coletar uma rocha: ser a sonda mais perto
-        if (distancia < menor_d){//se a sonda em questão for a mais perto no momento, verifica o segundo requisito
-            if(trocar_rocha(&aux->item_sonda.Compartimento, &rocha_file) == 1){//Já ter uma rocha da mesma categoria mais pesada
+        //verifica a primeira condicao para coletar uma rocha: ser a sonda mais perto
+        if (distancia < menor_d){//se a sonda em questao for a mais perto no momento, verifica o segundo requisito
+            if(trocar_rocha(&aux->item_sonda.Compartimento, &rocha_file) == 1){//Ja ter uma rocha da mesma categoria mais pesada
                 menor_d = distancia;
                 sonda_mais_perto = aux;
                 move_Sonda_Espacial(&sonda_mais_perto->item_sonda,lat_rocha,long_rocha);
@@ -287,19 +287,21 @@ void operacao_R(Lista_sonda_espacial * lista_sondas, float lat_rocha, float long
         }
         aux = aux->pProx;
 
+
     }
-    //se nenhuma sonda contém a rocha, a sonda mais perto encontrada irá mover-se até a rocha e coleta-la
+    if(sonda_mais_perto == NULL) return;
+    //se nenhuma sonda contem a rocha, a sonda mais perto encontrada ira mover-se ate a rocha e coleta-la
     move_Sonda_Espacial(&sonda_mais_perto->item_sonda,lat_rocha,long_rocha);
     inserir_rocha(&sonda_mais_perto->item_sonda.Compartimento, &rocha_file);
     contId++;
 }
 
-//recebe como parâmetro as coordenadas x e y da sonda e da rocha e retorna o valor da distância euclidiana
+//recebe como parametro as coordenadas x e y da sonda e da rocha e retorna o valor da distancia euclidiana
 float calcula_distancia(float x1, float y1, float x2, float y2){
     return (sqrt(pow((x1 - x2),2) + pow((y1 - y2),2)));
 }
 
-//Operação que imprime as rochas insertidas nas sondas
+//Operacao que imprime as rochas insertidas nas sondas
 void operacao_I(Lista_sonda_espacial * lista_sondas){
 
     int cont_sondas  = lista_sondas->QntItens;
@@ -313,7 +315,7 @@ void operacao_I(Lista_sonda_espacial * lista_sondas){
     }
 }
 
-//operação responsável por realizar a redistribuição das rochas entre as sondas
+//operacao responsavel por realizar a redistribuicao das rochas entre as sondas
 int operacao_E(Lista_sonda_espacial * lista_sondas){
     if (verifica_lista_vazia(lista_sondas)){//verifica se existem rochas a serem redistribuídas
         return 0;
@@ -329,13 +331,13 @@ int operacao_E(Lista_sonda_espacial * lista_sondas){
         quantidade_de_rochas += aux->item_sonda.Compartimento.tamanho;
         aux = aux->pProx;
     }
-    //cria uma lista temporária de acordo com essa quantidade total de rochas coletadas
+    //cria uma lista temporaria de acordo com essa quantidade total de rochas coletadas
     RochaMineral* lista_rochas= (RochaMineral*) malloc(quantidade_de_rochas * sizeof(RochaMineral)); //faz lista de rochas para redistribuir depois
     aux = lista_sondas->pPrimeiro->pProx;
     Ccelula* comp_aux = NULL;
     Ccelula* apontador = NULL;
     int indice = 0;
-    //percorre toda a lista de sondas esvaziando os seus compartimentos e armazenando as rochas em um vetor de rochas temporário
+    //percorre toda a lista de sondas esvaziando os seus compartimentos e armazenando as rochas em um vetor de rochas temporario
     for (int counter = 0; counter < cont_sondas; counter++){
         apontador = aux->item_sonda.Compartimento.primeiro->prox;
         
