@@ -1,7 +1,7 @@
 #ifndef ROCHA_MINERAL_H
 #define ROCHA_MINERAL_H
 
-#include "ListaMinerais.h"
+#include "../ListaMinerais/ListaMinerais.h"
 typedef ListaMinerais MLista;
 
 //estabelecendo a localização da rocha mineral como uma estrutura que possui latitude e longitude

@@ -3,7 +3,7 @@
 #define InicioArranjo 0
 #define MaxTam 3
 
-#include "Mineral.h"
+#include "..\Mineral/mineral.h"
 
 //definindo o tipo Apontador
 typedef int Apontador;

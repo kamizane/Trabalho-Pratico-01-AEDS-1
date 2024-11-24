@@ -1,7 +1,7 @@
 #ifndef COMPARTIMENTO_H
 #define COMPARTIMENTO_H
 
-#include "RochaMineral.h"
+#include "../RochaMineral/RochaMineral.h"
 
 //define a estrutura da celula que contem a rocha e um apontador para a proxima celula
 typedef struct celula{

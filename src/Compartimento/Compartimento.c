@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Compartimento.h"
+#include "./Compartimento.h"
 
 
 

@@ -1,13 +1,15 @@
 #ifndef SONDA_ESPACIAL_H
 #define SONDA_ESPACIAL_H
 
-#include "Compartimento.h"
+#include "../Compartimento/Compartimento.h"
 
+//usando uma estrutura para conter a localização
 typedef struct{
     float Latitude;
     float Longitude;
 }Localizacao;
 
+//utilização do enum para indicar o estado atual da sonda
 typedef enum{
     ON = 0,
     OFF = 1
@@ -24,7 +26,6 @@ typedef struct {
 }Sonda_espacial;
 
 void inicializa_Sonda_Espacial(Sonda_espacial * sonda, char * id, float latitude,float longitude, float capacidade, float velocidade, float combustivel);
-void preenche_Sonda_Espacial(Sonda_espacial * sonda);
 int liga_Sonda_Espacial(Sonda_espacial * sonda);
 int desliga_Sonda_Espacial(Sonda_espacial * sonda);
 void move_Sonda_Espacial (Sonda_espacial * sonda, float latitude, float longitude);

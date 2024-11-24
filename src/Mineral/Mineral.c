@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "Mineral.h"
+#include "./Mineral.h"
 
 void atribui_mineral(Mineral * mineral, char nome_mineral[]){//coloca todas as informaçoes em um mineral de acordo com o nome recebido
     char cor[20];
